@@ -1,0 +1,203 @@
+# SOTBI (Self-Organizing Trie-Based Intelligence) - Git Ignore Rules
+
+# LMDB Database Files (Persistent Memory)
+# These files contain the system's learned knowledge structure
+# Uncomment the following lines if you want to exclude the database from version control:
+trie_memory.lmdb/
+*.mdb
+*.lmdb
+
+# Note: By default, we include the LMDB files in version control to preserve
+# the system's learned knowledge. If you want to start fresh or exclude
+# large database files, uncomment the lines above.
+
+# Python Cache Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# Logging Files
+*.log
+logs/
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# HuggingFace Cache (Optional - these can be large)
+# Uncomment if you want to exclude downloaded datasets/models:
+# .cache/
+# ~/.cache/huggingface/
+
+# System-specific files
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff (if applicable)
+*.log
+local_settings.py
+db.sqlite3
+
+# Flask stuff (if applicable)
+instance/
+.webassets-cache
+
+# Scrapy stuff (if applicable)
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Model checkpoints and exports (if any)
+*.pkl
+*.pickle
+*.joblib
+*.model
+
+# Large data files (uncomment if needed)
+# *.csv
+# *.json
+# *.txt
+# data/
+# datasets/
+
+# Local configuration files
+config.local.py
+settings.local.py
+
+# System performance profiling
+*.prof
+*.profile
+
+# Memory dumps
+*.dump
+*.dmp
+
+# SOTBI-specific exclusions
+# Training logs (if generated)
+training_logs/
+training_history/
+
+# Experiment results (if generated)
+experiments/
+results/
+
+# Benchmarks (if generated)
+benchmarks/
+performance/
+
+# Debug outputs
+debug_*.txt
+debug_*.json
