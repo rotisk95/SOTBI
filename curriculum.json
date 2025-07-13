@@ -1,0 +1,1607 @@
+{
+    "curriculum": [
+      {
+        "level": 1,
+        "topic": "Foundations of Language",
+        "subtopics": [
+          "Recognizing Letters and Sounds",
+          "Basic Vocabulary: Common Objects",
+          "Simple Greetings",
+          "Basic Sentence Structure",
+          "Identifying Colors",
+          "Counting from 1 to 10",
+          "Understanding Yes and No",
+          "Following Simple Instructions",
+          "Naming Family Members",
+          "Recognizing Emotions"
+        ]
+      },
+      {
+        "level": 2,
+        "topic": "Daily Life Language Basics",
+        "subtopics": [
+          "Introducing Yourself",
+          "Talking About Your Day",
+          "Simple Questions: 'What?', 'Where?'",
+          "Recognizing and Naming Foods",
+          "Talking About the Weather",
+          "Basic Politeness: Please and Thank You",
+          "Describing Objects by Size or Shape",
+          "Recognizing Days of the Week",
+          "Naming Everyday Activities",
+          "Simple Requests: 'Can I have...?'"
+        ]
+      },
+      {
+        "level": 3,
+        "topic": "Basic Conversations",
+        "subtopics": [
+          "Starting a Conversation",
+          "Answering Yes/No Questions",
+          "Describing Locations",
+          "Expressing Likes and Dislikes",
+          "Talking About Hobbies",
+          "Asking for Directions",
+          "Simple Time Expressions: Morning, Evening",
+          "Expressing Basic Needs: Hunger, Thirst",
+          "Describing Clothing",
+          "Talking About Pets"
+        ]
+      },
+      {
+        "level": 4,
+        "topic": "Expanding Vocabulary",
+        "subtopics": [
+          "Learning Synonyms",
+          "Understanding Antonyms",
+          "Building Words with Prefixes",
+          "Describing Actions",
+          "Naming Household Items",
+          "Describing Feelings",
+          "Understanding Opposites",
+          "Naming Transportation Modes",
+          "Talking About Nature: Trees, Animals",
+          "Basic Prepositions: In, On, Under"
+        ]
+      },
+      {
+        "level": 5,
+        "topic": "Interpersonal Interactions",
+        "subtopics": [
+          "Introducing Friends",
+          "Sharing Opinions",
+          "Apologizing and Forgiving",
+          "Expressing Gratitude",
+          "Making Compliments",
+          "Asking for Help",
+          "Agreeing and Disagreeing",
+          "Understanding Personal Space",
+          "Basic Conflict Resolution",
+          "Encouraging Others"
+        ]
+      },
+      {
+        "level": 6,
+        "topic": "Intermediate Language Skills",
+        "subtopics": [
+          "Constructing Complex Sentences",
+          "Using Question Words: Why, How",
+          "Talking About Past Events",
+          "Describing Future Plans",
+          "Using Comparative Adjectives",
+          "Making Suggestions",
+          "Explaining Simple Concepts",
+          "Talking About Favorite Places",
+          "Understanding Context in Conversations",
+          "Expressing Doubt or Certainty"
+        ]
+      },
+      {
+        "level": 7,
+        "topic": "Advanced Conversations",
+        "subtopics": [
+          "Storytelling Basics",
+          "Explaining Rules or Processes",
+          "Discussing News or Current Events",
+          "Expressing Sympathy or Concern",
+          "Talking About Traditions or Holidays",
+          "Exploring Personal Goals",
+          "Talking About Books or Movies",
+          "Explaining Preferences",
+          "Making Plans with Others",
+          "Handling Misunderstandings"
+        ]
+      },
+      {
+        "level": 8,
+        "topic": "Everyday Practical Language",
+        "subtopics": [
+          "Ordering Food at a Restaurant",
+          "Shopping for Groceries",
+          "Talking to a Doctor",
+          "Explaining Symptoms",
+          "Calling Customer Service",
+          "Talking About Jobs",
+          "Giving Directions",
+          "Asking About Prices",
+          "Booking Tickets or Reservations",
+          "Discussing Transportation Options"
+        ]
+      },
+      {
+        "level": 9,
+        "topic": "Cultural and Regional Language Variations",
+        "subtopics": [
+          "Learning Common Idioms",
+          "Understanding Slang",
+          "Exploring Regional Accents",
+          "Talking About Local Customs",
+          "Understanding Humor",
+          "Recognizing Cultural Gestures",
+          "Discussing Festivals and Celebrations",
+          "Learning Polite Expressions",
+          "Understanding Contextual Meaning",
+          "Talking About Historical Events"
+        ]
+      },
+      {
+        "level": 10,
+        "topic": "Professional and Formal Language",
+        "subtopics": [
+          "Writing Emails",
+          "Preparing for a Job Interview",
+          "Discussing Work Responsibilities",
+          "Understanding Office Etiquette",
+          "Taking Meeting Notes",
+          "Presenting Ideas",
+          "Writing Reports",
+          "Discussing Deadlines",
+          "Asking for Feedback",
+          "Negotiating Agreements"
+        ]
+      },
+      {
+        "level": 11,
+        "topic": "Basic Science and Exploration",
+        "subtopics": [
+          "Exploring the Solar System",
+          "Introduction to Plants and Animals",
+          "Basic Weather Patterns",
+          "Understanding Seasons",
+          "Learning About Simple Machines",
+          "Talking About the Water Cycle",
+          "Recognizing Different Rocks",
+          "Introduction to Dinosaurs",
+          "Understanding Basic Ecosystems",
+          "Exploring Simple Inventions"
+        ]
+      },
+      {
+        "level": 12,
+        "topic": "Health and Safety Language",
+        "subtopics": [
+          "Talking About Healthy Foods",
+          "Understanding Nutrition Labels",
+          "Discussing Exercise",
+          "Explaining Symptoms to a Doctor",
+          "Learning Emergency Numbers",
+          "Talking About Mental Health",
+          "Describing Safe Behavior",
+          "Discussing First Aid Basics",
+          "Explaining Allergies",
+          "Recognizing Health Resources"
+        ]
+      },
+      {
+        "level": 13,
+        "topic": "Advanced Vocabulary for Debates",
+        "subtopics": [
+          "Agreeing and Disagreeing Tactfully",
+          "Making Comparisons",
+          "Stating Opinions Clearly",
+          "Offering Evidence",
+          "Countering Arguments",
+          "Exploring Moral Questions",
+          "Using Rhetorical Questions",
+          "Recognizing Logical Fallacies",
+          "Exploring Persuasive Language",
+          "Debating Ethical Dilemmas"
+        ]
+      },
+      {
+        "level": 14,
+        "topic": "Narrative Skills",
+        "subtopics": [
+          "Crafting a Plot",
+          "Describing Characters",
+          "Building Tension",
+          "Using Dialogue",
+          "Setting the Scene",
+          "Exploring Genres",
+          "Introducing Conflict",
+          "Resolving Stories",
+          "Writing Flashbacks",
+          "Editing Narratives"
+        ]
+      },
+      {
+        "level": 15,
+        "topic": "Analyzing Literature",
+        "subtopics": [
+          "Understanding Themes",
+          "Exploring Symbols",
+          "Discussing Motifs",
+          "Recognizing Narrative Styles",
+          "Analyzing Characters",
+          "Exploring Poetry Techniques",
+          "Understanding Tone and Mood",
+          "Discussing Historical Context",
+          "Evaluating Writing Style",
+          "Exploring Famous Works"
+        ]
+      },
+    
+      {
+        "level": 16,
+        "topic": "Philosophical Thinking",
+        "subtopics": [
+          "Understanding Ethics",
+          "What is Reality? Exploring Metaphysics",
+          "Basics of Logic",
+          "Epistemology: How We Know Things",
+          "Exploring Moral Dilemmas",
+          "Introduction to Existentialism",
+          "Theories of Happiness",
+          "Philosophy in Daily Life",
+          "Examining Free Will",
+          "The Role of Philosophy in Science"
+        ]
+      },
+      {
+        "level": 17,
+        "topic": "Advanced Everyday Conversations",
+        "subtopics": [
+          "Discussing Complex Emotions",
+          "Sharing Personal Stories",
+          "Exploring Future Aspirations",
+          "Debating Opinions Calmly",
+          "Making Hypothetical Suggestions",
+          "Expressing Regret and Apology",
+          "Talking About Global Issues",
+          "Using Humor Effectively",
+          "Explaining Difficult Topics Simply",
+          "Understanding Conversational Tone"
+        ]
+      },
+      {
+        "level": 18,
+        "topic": "Deep Cultural Awareness",
+        "subtopics": [
+          "Learning Key Global Traditions",
+          "Understanding Cultural Sensitivity",
+          "Exploring Art Forms Globally",
+          "Introduction to World Religions",
+          "Celebrations Across Cultures",
+          "Etiquette in Different Societies",
+          "How Culture Influences Communication",
+          "Global History Milestones",
+          "Comparing Educational Systems Worldwide",
+          "Understanding Linguistic Diversity"
+        ]
+      },
+      {
+        "level": 19,
+        "topic": "Introduction to Science Fiction Concepts",
+        "subtopics": [
+          "Understanding Space-Time",
+          "Exploring Artificial Intelligence",
+          "Basics of Quantum Mechanics",
+          "Theories of Multiverses",
+          "How Technology Shapes Society",
+          "Ethics in Technological Advancements",
+          "Impact of Robots and Automation",
+          "Human Augmentation and Cyborgs",
+          "Predicting the Future with Science",
+          "Utopian vs Dystopian Societies"
+        ]
+      },
+      {
+        "level": 20,
+        "topic": "Real-World Problem Solving",
+        "subtopics": [
+          "Analyzing Real-Life Case Studies",
+          "Breaking Down Complex Problems",
+          "Building Solutions Step-by-Step",
+          "Understanding Teamwork Dynamics",
+          "Negotiation Strategies",
+          "Conflict Resolution in Practice",
+          "Using Creative Thinking",
+          "Time-Management Applications",
+          "Applying Financial Knowledge",
+          "Sustainability in Decision-Making"
+        ]
+      },
+      {
+        "level": 21,
+        "topic": "Intermediate Technology",
+        "subtopics": [
+          "Understanding Programming Loops",
+          "Exploring Cybersecurity Threats",
+          "Basic Algorithms and Their Use",
+          "Introduction to Data Structures",
+          "Using Technology for Productivity",
+          "Understanding Internet Protocols",
+          "Basics of Cloud Computing",
+          "The Internet of Things (IoT)",
+          "Introduction to Blockchain Technology",
+          "Data Privacy and Ethics"
+        ]
+      },
+      {
+        "level": 22,
+        "topic": "Intermediate Physics",
+        "subtopics": [
+          "Newtonian Mechanics",
+          "Electromagnetic Waves",
+          "Laws of Thermodynamics",
+          "Introduction to Optics",
+          "Understanding Gravity",
+          "Nuclear Physics Basics",
+          "Exploring the Periodic Table",
+          "Motion in Two Dimensions",
+          "Basic Acoustics",
+          "Physics in Everyday Life"
+        ]
+      },
+      {
+        "level": 23,
+        "topic": "Advanced Casual Language",
+        "subtopics": [
+          "Using Sarcasm Appropriately",
+          "Understanding and Creating Jokes",
+          "Recognizing Subtext",
+          "Casual Debates with Friends",
+          "Conversational Fillers and Pacing",
+          "Telling Anecdotes",
+          "Discussing Popular Media",
+          "Picking Up on Social Cues",
+          "Adapting Tone for Humor",
+          "Crafting Good First Impressions"
+        ]
+      },
+      {
+        "level": 24,
+        "topic": "Critical Analysis",
+        "subtopics": [
+          "Breaking Down Arguments",
+          "Identifying Logical Fallacies",
+          "Evaluating Evidence",
+          "Recognizing Bias in Media",
+          "Building Persuasive Arguments",
+          "The Role of Emotion in Debate",
+          "Analyzing Case Studies",
+          "Exploring Different Viewpoints",
+          "Debating Abstract Concepts",
+          "Exploring Counterpoints Effectively"
+        ]
+      },
+      {
+        "level": 25,
+        "topic": "Creative Language Expression",
+        "subtopics": [
+          "Exploring Poetic Forms",
+          "Writing Flash Fiction",
+          "Advanced Metaphors and Analogies",
+          "Creating Personal Essays",
+          "Exploring Symbolism",
+          "Writing Character-Driven Narratives",
+          "Constructing Dialogue for Stories",
+          "Exploring Nonlinear Narratives",
+          "Finding Your Writing Voice",
+          "Editing and Revising Work"
+        ]
+      },
+      {
+        "level": 26,
+        "topic": "Introduction to Artificial Intelligence",
+        "subtopics": [
+          "What is AI?",
+          "History of AI",
+          "Understanding Machine Learning",
+          "AI in Daily Life",
+          "Ethics of AI",
+          "Difference Between AI and Humans",
+          "Applications of AI in Healthcare",
+          "AI in Entertainment",
+          "AI for Problem Solving",
+          "Future Trends in AI"
+        ]
+      },
+      {
+        "level": 27,
+        "topic": "Advanced Grammar and Syntax",
+        "subtopics": [
+          "Subjunctive Mood",
+          "Complex Sentences with Clauses",
+          "Conditional Statements",
+          "Exploring Passive Voice",
+          "Advanced Punctuation",
+          "Using Semicolons Correctly",
+          "Hyphens, Dashes, and Parentheses",
+          "Grammar in Different Contexts",
+          "Mastering Verb Tenses",
+          "Exploring Sentence Fluency"
+        ]
+      },
+      {
+        "level": 28,
+        "topic": "Exploring Space and Astronomy",
+        "subtopics": [
+          "The Solar System in Detail",
+          "Understanding Black Holes",
+          "Stars and Their Lifecycles",
+          "Galaxies and the Universe",
+          "Space Exploration History",
+          "Satellites and Their Role",
+          "The International Space Station",
+          "Basics of Rocket Science",
+          "Theories About Extraterrestrial Life",
+          "Current Space Missions"
+        ]
+      },
+      {
+        "level": 29,
+        "topic": "Psychology Basics",
+        "subtopics": [
+          "What is Psychology?",
+          "Understanding Emotions",
+          "Basics of Cognitive Development",
+          "How Memory Works",
+          "Introduction to Behavioral Psychology",
+          "Learning and Motivation",
+          "Understanding Personality Types",
+          "The Role of Habits",
+          "Social Behavior and Influence",
+          "Mental Health Awareness"
+        ]
+      },
+      {
+        "level": 30,
+        "topic": "Intermediate Mathematics",
+        "subtopics": [
+          "Introduction to Trigonometry",
+          "Working with Polynomials",
+          "Understanding Exponents",
+          "Basic Set Theory",
+          "Understanding Functions",
+          "Solving Quadratic Equations",
+          "Graphing Linear Equations",
+          "Exploring Ratios and Proportions",
+          "Understanding Probability Trees",
+          "Exploring Mathematical Proofs"
+        ]
+      },
+      {
+        "level": 31,
+        "topic": "Storytelling in Media",
+        "subtopics": [
+          "Basics of Film Storytelling",
+          "Introduction to Screenwriting",
+          "Analyzing Plot Structures in Movies",
+          "Exploring Character Development",
+          "Themes in Popular Films",
+          "Understanding Genre Tropes",
+          "Cultural Impact of Movies",
+          "Crafting Dialogue for Screenplays",
+          "Introduction to Visual Storytelling",
+          "Exploring Symbolism in Cinema"
+        ]
+      },
+      {
+        "level": 32,
+        "topic": "Understanding Economics",
+        "subtopics": [
+          "What is Economics?",
+          "Supply and Demand Basics",
+          "Understanding Markets",
+          "Basics of Money and Banking",
+          "Introduction to Global Trade",
+          "Economic Policies and Their Impact",
+          "Inflation and Deflation",
+          "Understanding Employment and Labor",
+          "Exploring Government Budgets",
+          "Ethics in Economic Decisions"
+        ]
+      },
+      {
+        "level": 33,
+        "topic": "Climate Change and Environmental Science",
+        "subtopics": [
+          "Understanding Climate Systems",
+          "Greenhouse Gases and Their Impact",
+          "Deforestation and Its Effects",
+          "Renewable Energy Sources",
+          "The Role of Oceans in Climate",
+          "Sustainable Living Practices",
+          "Exploring Climate Policies",
+          "Impact of Industrialization",
+          "Protecting Biodiversity",
+          "Mitigating Climate Change"
+        ]
+      },
+      {
+        "level": 34,
+        "topic": "Intermediate Coding Skills",
+        "subtopics": [
+          "Mastering Loops and Iterations",
+          "Working with Arrays and Lists",
+          "Understanding Functions",
+          "Conditional Logic in Programming",
+          "Debugging Basics",
+          "Introduction to Recursion",
+          "Exploring Object-Oriented Programming",
+          "Using APIs in Projects",
+          "Version Control with Git",
+          "Building Simple Applications"
+        ]
+      },
+      {
+        "level": 35,
+        "topic": "Exploring World History",
+        "subtopics": [
+          "Ancient Civilizations: Egypt and Mesopotamia",
+          "The Rise and Fall of Empires",
+          "Medieval Europe",
+          "Colonization and Its Impact",
+          "The Renaissance Era",
+          "Industrial Revolution",
+          "World Wars: Causes and Effects",
+          "Cold War Dynamics",
+          "Major Revolutions in History",
+          "Understanding Modern Globalization"
+        ]
+      },
+      {
+        "level": 36,
+        "topic": "Physical Fitness and Health",
+        "subtopics": [
+          "Understanding Cardiovascular Fitness",
+          "Basics of Strength Training",
+          "The Role of Flexibility",
+          "Importance of Hydration",
+          "Balancing Diet and Exercise",
+          "Understanding Metabolism",
+          "Basics of Sports Nutrition",
+          "Preventing Common Injuries",
+          "Role of Sleep in Fitness",
+          "Tracking Fitness Progress"
+        ]
+      },
+      {
+        "level": 37,
+        "topic": "Understanding Music and Composition",
+        "subtopics": [
+          "Reading Sheet Music",
+          "Basics of Musical Notation",
+          "Understanding Scales and Keys",
+          "Exploring Different Genres",
+          "Introduction to Rhythm and Tempo",
+          "Creating Simple Melodies",
+          "The Role of Chords in Music",
+          "Music Technology Basics",
+          "Famous Composers in History",
+          "The Cultural Role of Music"
+        ]
+      },
+      {
+        "level": 38,
+        "topic": "Ethics and Morality",
+        "subtopics": [
+          "Exploring What is Right and Wrong",
+          "Understanding Consequentialism",
+          "Virtue Ethics Basics",
+          "Moral Relativism vs Absolutism",
+          "Ethics in Technology",
+          "Exploring Social Justice",
+          "Moral Lessons in History",
+          "Debating Ethical Issues",
+          "The Role of Empathy in Morality",
+          "Developing Personal Ethical Frameworks"
+        ]
+      },
+      {
+        "level": 39,
+        "topic": "Critical Reading and Analysis",
+        "subtopics": [
+          "Identifying Main Ideas in Texts",
+          "Recognizing Supporting Details",
+          "Analyzing Tone and Style",
+          "Making Inferences",
+          "Understanding Persuasive Techniques",
+          "Evaluating Arguments",
+          "Recognizing Bias in Writing",
+          "Comparing and Contrasting Texts",
+          "Summarizing Key Points",
+          "Interpreting Data from Texts"
+        ]
+      },
+      {
+        "level": 40,
+        "topic": "Intermediate Biology",
+        "subtopics": [
+          "Cell Structures and Their Functions",
+          "Basics of Genetics",
+          "Exploring Photosynthesis",
+          "Understanding Ecosystem Dynamics",
+          "Human Body Systems",
+          "The Role of Microorganisms",
+          "Introduction to Evolution",
+          "Basics of Reproductive Biology",
+          "Exploring Animal Adaptations",
+          "Environmental Impacts on Biology"
+        ]
+      },
+      {
+        "level": 41,
+        "topic": "World Religions and Spirituality",
+        "subtopics": [
+          "Basics of Hinduism",
+          "Principles of Buddhism",
+          "Introduction to Christianity",
+          "The Role of Islam",
+          "Understanding Judaism",
+          "Exploring Indigenous Beliefs",
+          "Atheism and Agnosticism",
+          "Comparative Religious Studies",
+          "Impact of Religion on History",
+          "Religion and Modern Society"
+        ]
+      },
+      {
+        "level": 42,
+        "topic": "Advanced Public Speaking",
+        "subtopics": [
+          "Crafting Engaging Introductions",
+          "Using Persuasive Techniques",
+          "Maintaining Audience Engagement",
+          "Using Visual Aids Effectively",
+          "Handling Audience Questions",
+          "Overcoming Stage Fright",
+          "Mastering Non-Verbal Communication",
+          "Using Humor in Speeches",
+          "Closing Speeches Powerfully",
+          "Refining Delivery Techniques"
+        ]
+      },
+      {
+        "level": 43,
+        "topic": "Exploring Mythology",
+        "subtopics": [
+          "Greek and Roman Mythology",
+          "Norse Mythology",
+          "Myths from Indigenous Cultures",
+          "Mythological Heroes and Villains",
+          "Understanding Folklore",
+          "Religious Mythologies",
+          "Symbolism in Myths",
+          "Impact on Modern Literature",
+          "Global Mythological Themes",
+          "Creating Your Own Myth"
+        ]
+      },
+      {
+        "level": 44,
+        "topic": "Understanding Sociology",
+        "subtopics": [
+          "What is Society?",
+          "Exploring Social Structures",
+          "Understanding Social Roles",
+          "Introduction to Social Norms",
+          "Basics of Cultural Anthropology",
+          "Impact of Media on Society",
+          "Sociology of Education",
+          "Social Inequality",
+          "Understanding Community Dynamics",
+          "Sociological Research Methods"
+        ]
+      },
+      {
+        "level": 45,
+        "topic": "Intermediate Chemistry",
+        "subtopics": [
+          "Periodic Table in Detail",
+          "Balancing Chemical Equations",
+          "Understanding Acids and Bases",
+          "Introduction to Organic Chemistry",
+          "Exploring Reaction Rates",
+          "Basics of Thermodynamics in Chemistry",
+          "Understanding Bonding Types",
+          "Role of Catalysts",
+          "Polymers and Their Applications",
+          "Exploring Chemical Mixtures"
+        ]
+      },
+      {
+        "level": 46,
+        "topic": "Artificial Intelligence in Practice",
+        "subtopics": [
+          "Introduction to Neural Networks",
+          "Understanding Supervised Learning",
+          "Basics of Unsupervised Learning",
+          "Applications in Vision and Speech",
+          "Role of Big Data",
+          "Exploring AI for Social Good",
+          "AI in Robotics",
+          "Ethical Challenges in AI Deployment",
+          "Exploring Natural Language Processing",
+          "Developing AI-Based Applications"
+        ]
+      },
+      {
+        "level": 47,
+        "topic": "Advanced Interpersonal Communication",
+        "subtopics": [
+          "Navigating Difficult Conversations",
+          "Developing Emotional Intelligence",
+          "Recognizing Communication Barriers",
+          "Effective Negotiation Skills",
+          "Empathy in Communication",
+          "Providing Constructive Feedback",
+          "Active Listening Techniques",
+          "Managing Misunderstandings",
+          "Resolving Conflicts Peacefully",
+          "Building Long-Lasting Relationships"
+        ]
+      },
+      {
+        "level": 48,
+        "topic": "Global Challenges and Solutions",
+        "subtopics": [
+          "Understanding Poverty and Inequality",
+          "Global Health Crises",
+          "Sustainable Energy Solutions",
+          "Impact of Urbanization",
+          "Role of Technology in Solving Global Problems",
+          "Education for All",
+          "International Cooperation",
+          "Impact of Migration",
+          "Climate Change Mitigation",
+          "Future of Global Governance"
+        ]
+      },
+      {
+        "level": 49,
+        "topic": "Advanced Physics",
+        "subtopics": [
+          "Exploring Quantum Physics",
+          "Introduction to Relativity",
+          "Particle Physics Basics",
+          "Electromagnetic Theory",
+          "The Role of Waves in Physics",
+          "Exploring Thermodynamics",
+          "Applications of Modern Physics",
+          "Understanding Nuclear Energy",
+          "Basics of Astrophysics",
+          "Physics in Everyday Technology"
+        ]
+      },
+      {
+        "level": 50,
+        "topic": "Philosophical Debates",
+        "subtopics": [
+          "The Concept of Free Will",
+          "Debating Morality Across Cultures",
+          "What Defines Truth?",
+          "The Role of Philosophy in Politics",
+          "Understanding Aesthetic Judgments",
+          "Philosophy of Science",
+          "Debating Human Nature",
+          "The Role of Individualism vs Collectivism",
+          "Exploring the Meaning of Life",
+          "Philosophy in Art and Literature"
+        ]
+    },
+    {
+        "level": 51,
+        "topic": "Understanding Human History Through Art",
+        "subtopics": [
+          "Prehistoric Cave Art",
+          "Art of Ancient Egypt",
+          "Classical Greek and Roman Art",
+          "Renaissance Art",
+          "Baroque and Rococo Movements",
+          "Romanticism in Art",
+          "Impressionism and Post-Impressionism",
+          "Modern Art Movements",
+          "Contemporary Art Practices",
+          "Cultural Narratives in Art"
+        ]
+      },
+      {
+        "level": 52,
+        "topic": "Advanced Writing Skills",
+        "subtopics": [
+          "Writing Research Papers",
+          "Constructing Complex Arguments",
+          "Understanding Literary Criticism",
+          "Developing a Thesis Statement",
+          "Mastering Persuasive Writing",
+          "Using Imagery in Writing",
+          "Editing and Proofreading Techniques",
+          "Exploring Fictional World-Building",
+          "Advanced Narrative Structures",
+          "Writing Effective Introductions and Conclusions"
+        ]
+      },
+      {
+        "level": 53,
+        "topic": "Intermediate Geopolitics",
+        "subtopics": [
+          "History of Geopolitical Conflicts",
+          "Understanding Global Alliances",
+          "The Role of International Organizations",
+          "Economic Sanctions and Their Impact",
+          "Territorial Disputes Around the World",
+          "The Role of Nationalism",
+          "Global Energy Politics",
+          "Cybersecurity in Geopolitics",
+          "Soft Power vs Hard Power",
+          "Analyzing Global Power Shifts"
+        ]
+      },
+      {
+        "level": 54,
+        "topic": "Advanced Programming Concepts",
+        "subtopics": [
+          "Data Structures in Depth",
+          "Understanding Algorithms: Sorting and Searching",
+          "Introduction to Machine Learning Models",
+          "Database Management Basics",
+          "Exploring Functional Programming",
+          "Concurrency and Parallel Programming",
+          "Building APIs",
+          "Testing and Debugging Large Applications",
+          "Version Control with Advanced Git",
+          "Introduction to Cloud Computing Frameworks"
+        ]
+      },
+      {
+        "level": 55,
+        "topic": "Exploring Literature Across Cultures",
+        "subtopics": [
+          "African Literature: Key Themes and Authors",
+          "Asian Literature and its Traditions",
+          "Latin American Magical Realism",
+          "Middle Eastern Poetry and Prose",
+          "European Classics and Modernism",
+          "Indigenous Storytelling Traditions",
+          "Exploring American Literature Movements",
+          "Caribbean Literature and Colonial Narratives",
+          "Modern Global Fiction Trends",
+          "Analyzing Cross-Cultural Literary Themes"
+        ]
+      },
+      {
+        "level": 56,
+        "topic": "Understanding Robotics",
+        "subtopics": [
+          "What are Robots?",
+          "Basic Components of Robotics",
+          "Sensors and Actuators",
+          "Understanding Robotic Movements",
+          "Applications of Robotics in Industry",
+          "Introduction to Robot Programming",
+          "Exploring Autonomous Vehicles",
+          "The Role of AI in Robotics",
+          "Ethics of Robotic Applications",
+          "Future of Robotics in Daily Life"
+        ]
+      },
+      {
+        "level": 57,
+        "topic": "Introduction to Human Anatomy",
+        "subtopics": [
+          "Major Organ Systems",
+          "Basics of the Nervous System",
+          "Understanding the Cardiovascular System",
+          "Role of the Skeletal System",
+          "Muscular System Overview",
+          "Digestive Processes",
+          "Basics of the Respiratory System",
+          "Endocrine System and Hormones",
+          "Immune System Basics",
+          "Reproductive Health and Anatomy"
+        ]
+      },
+      {
+        "level": 58,
+        "topic": "Introduction to Business and Finance",
+        "subtopics": [
+          "Basics of Starting a Business",
+          "Understanding Business Models",
+          "Introduction to Market Analysis",
+          "Exploring Investment Basics",
+          "Financial Literacy: Budgeting and Saving",
+          "Introduction to Taxes",
+          "Understanding Loans and Credit",
+          "Role of Marketing in Business",
+          "Exploring E-commerce",
+          "Ethical Practices in Business"
+        ]
+      },
+      {
+        "level": 59,
+        "topic": "Advanced Data Analysis",
+        "subtopics": [
+          "Understanding Statistical Inference",
+          "Basics of Data Visualization",
+          "Exploring Predictive Analytics",
+          "Analyzing Big Data",
+          "Introduction to Data Wrangling",
+          "Using Spreadsheets for Data Analysis",
+          "Introduction to R and Python for Data Science",
+          "Understanding Correlation and Causation",
+          "Using Regression Models",
+          "Evaluating Data Bias and Quality"
+        ]
+      },
+      {
+        "level": 60,
+        "topic": "Exploring Advanced Philosophy",
+        "subtopics": [
+          "Philosophy of Mind",
+          "Metaphysics and Ontology",
+          "Theories of Knowledge: Epistemology",
+          "Existentialism and Human Purpose",
+          "Postmodern Philosophy",
+          "Ethics of Technology",
+          "Philosophy of Language",
+          "The Role of Logic in Philosophy",
+          "Analyzing Philosophical Texts",
+          "Philosophical Impact on Society"
+        ]
+      },
+      {
+        "level": 61,
+        "topic": "Basics of Environmental Conservation",
+        "subtopics": [
+          "The Role of Forests in Ecology",
+          "Understanding Renewable Resources",
+          "Importance of Recycling",
+          "Exploring Marine Conservation",
+          "Wildlife Preservation Efforts",
+          "Understanding Sustainable Agriculture",
+          "Water Conservation Techniques",
+          "Addressing Air Pollution",
+          "Protecting Endangered Species",
+          "Global Conservation Initiatives"
+        ]
+      },
+      {
+        "level": 62,
+        "topic": "Exploring Advanced Economics",
+        "subtopics": [
+          "Global Economic Systems",
+          "Understanding Trade Policies",
+          "Role of Central Banks",
+          "Analyzing Economic Cycles",
+          "Economic Inequalities and Their Impact",
+          "Basics of Behavioral Economics",
+          "Understanding Economic Indicators",
+          "Inflation and Deflation Dynamics",
+          "Role of Innovation in Economics",
+          "Global Economic Development Trends"
+        ]
+      },
+      {
+        "level": 63,
+        "topic": "History of Technology",
+        "subtopics": [
+          "The Invention of the Wheel",
+          "Industrial Revolution Innovations",
+          "History of Communication Technology",
+          "Exploring the Birth of Computers",
+          "The Rise of the Internet",
+          "Role of AI in Modern History",
+          "Space Exploration Milestones",
+          "Advancements in Medical Technology",
+          "Transportation Technology Evolution",
+          "Future Trends in Technology Development"
+        ]
+      },
+      {
+        "level": 64,
+        "topic": "Advanced Interdisciplinary Studies",
+        "subtopics": [
+          "Connecting Physics and Biology",
+          "Role of Chemistry in Environmental Science",
+          "Understanding Sociocultural Evolution",
+          "Intersection of Economics and Politics",
+          "Philosophy’s Influence on Science",
+          "Ethics in Multidisciplinary Research",
+          "History Through a Geopolitical Lens",
+          "Art as a Reflection of Society",
+          "Technology’s Role in Globalization",
+          "Exploring Interdisciplinary Problem Solving"
+        ]
+      },
+      {
+        "level": 65,
+        "topic": "Advanced Problem Solving",
+        "subtopics": [
+          "Applying Game Theory",
+          "Understanding Complex Systems",
+          "Solving Real-World Case Studies",
+          "Using Creative Thinking Techniques",
+          "Developing Critical Thinking Skills",
+          "Exploring Heuristics",
+          "Risk Assessment and Mitigation",
+          "Collaborative Problem Solving",
+          "Optimizing Resource Use",
+          "Evaluating Long-Term Solutions"
+        ]
+      },
+      {
+        "level": 66,
+        "topic": "Advanced Astronomy",
+        "subtopics": [
+          "Understanding Exoplanets",
+          "Studying Stellar Evolution",
+          "Theories of the Big Bang",
+          "Exploring Dark Matter and Energy",
+          "Basics of Cosmology",
+          "Interstellar Travel Concepts",
+          "Role of Telescopes in Astronomy",
+          "Impact of Space Weather",
+          "Gravitational Waves",
+          "Discoveries in Astrobiology"
+        ]
+      },
+      {
+        "level": 67,
+        "topic": "Understanding the Brain",
+        "subtopics": [
+          "Basic Neuroscience",
+          "How Neurons Communicate",
+          "Role of the Cerebral Cortex",
+          "Understanding Memory Mechanisms",
+          "Basics of Neuroplasticity",
+          "Cognition and Decision-Making",
+          "Impact of Sleep on Brain Health",
+          "Role of Emotions in Thought",
+          "Exploring Brain Disorders",
+          "Current Trends in Brain Research"
+        ]
+      },
+      {
+        "level": 68,
+        "topic": "Intermediate Artificial Intelligence",
+        "subtopics": [
+          "Deep Learning Basics",
+          "Introduction to Reinforcement Learning",
+          "Using Natural Language Processing",
+          "Exploring AI Applications in Healthcare",
+          "AI in Education",
+          "Challenges of Machine Bias",
+          "Understanding Neural Networks",
+          "Ethical Challenges in AI",
+          "Building Chatbots",
+          "The Role of Explainable AI"
+        ]
+      },
+      {
+        "level": 69,
+        "topic": "Global Perspectives",
+        "subtopics": [
+          "Cultural Responses to Globalization",
+          "Role of the United Nations",
+          "Analyzing Global Media Trends",
+          "Impact of Migration",
+          "The Ethics of Cultural Appropriation",
+          "Global Education Systems",
+          "Comparing Urbanization Globally",
+          "Access to Healthcare Worldwide",
+          "Global Impact of Climate Policies",
+          "The Future of Global Governance"
+        ]
+      },
+      {
+        "level": 70,
+        "topic": "Advanced Creative Writing",
+        "subtopics": [
+          "Exploring Experimental Fiction",
+          "Writing Long-Form Stories",
+          "Building Rich, Complex Characters",
+          "Exploring Multiple Plotlines",
+          "Advanced Dialogue Techniques",
+          "Exploring Memoirs",
+          "Writing Satirical Pieces",
+          "Editing for Style and Clarity",
+          "Mastering Symbolism",
+          "Self-Publishing Basics"
+        ]
+      },
+      {
+        "level": 71,
+        "topic": "Advanced Literature Analysis",
+        "subtopics": [
+          "Exploring Postcolonial Literature",
+          "Analyzing Feminist Literary Criticism",
+          "Studying Literature of Resistance",
+          "Understanding Ecocriticism",
+          "Postmodernism in Literature",
+          "Metafiction and Its Techniques",
+          "Analyzing Unreliable Narrators",
+          "Literature and Philosophy Connections",
+          "Exploring Epistolary Novels",
+          "Analyzing Graphic Novels"
+        ]
+      },
+      {
+        "level": 72,
+        "topic": "Advanced Leadership and Management",
+        "subtopics": [
+          "Principles of Transformational Leadership",
+          "Team-Building Strategies",
+          "Managing Conflict in Teams",
+          "Effective Decision-Making Techniques",
+          "Understanding Organizational Dynamics",
+          "Introduction to Strategic Planning",
+          "Developing Leadership Styles",
+          "Emotional Intelligence in Leadership",
+          "Motivating and Inspiring Teams",
+          "Evaluating Performance Effectively"
+        ]
+      },
+      {
+        "level": 73,
+        "topic": "Global Challenges in Education",
+        "subtopics": [
+          "Understanding Equity in Education",
+          "Digital Divide in Learning",
+          "Cultural Sensitivity in Teaching",
+          "Role of Technology in Education",
+          "Impact of COVID-19 on Learning",
+          "Global Educational Inequalities",
+          "Access to Higher Education",
+          "Educational Reforms Globally",
+          "Role of AI in Education",
+          "Developing Lifelong Learning Habits"
+        ]
+      },
+      {
+        "level": 74,
+        "topic": "Exploring Language Evolution",
+        "subtopics": [
+          "The Origin of Languages",
+          "How Language Shapes Thought",
+          "Pidgins and Creoles",
+          "Impact of Technology on Language",
+          "Analyzing Language Families",
+          "Introduction to Linguistics",
+          "Language Endangerment",
+          "Creating New Languages",
+          "Role of Slang in Evolution",
+          "Exploring Code-Switching"
+        ]
+      },
+      {
+        "level": 75,
+        "topic": "Introduction to Quantum Computing",
+        "subtopics": [
+          "What is Quantum Computing?",
+          "Understanding Qubits",
+          "Basics of Quantum Mechanics",
+          "Quantum Algorithms",
+          "Quantum Cryptography",
+          "Applications of Quantum Computing",
+          "Limitations of Classical Computing",
+          "Exploring Quantum Entanglement",
+          "The Role of Quantum Simulation",
+          "Future of Quantum Computing"
+        ]
+      },
+      {
+        "level": 76,
+        "topic": "Advanced Environmental Studies",
+        "subtopics": [
+          "Understanding Carbon Footprints",
+          "The Role of NGOs in Conservation",
+          "Mitigating Biodiversity Loss",
+          "Exploring Green Technologies",
+          "Urban Sustainability Practices",
+          "The Role of Renewable Energy Policies",
+          "Analyzing Environmental Impact Assessments",
+          "Climate Adaptation Strategies",
+          "Protecting Water Resources",
+          "International Environmental Agreements"
+        ]
+      },
+      {
+        "level": 77,
+        "topic": "The Psychology of Learning",
+        "subtopics": [
+          "Theories of Learning",
+          "Understanding Cognitive Load",
+          "How Memory Impacts Learning",
+          "Motivation in Education",
+          "Self-Directed Learning",
+          "Role of Feedback in Learning",
+          "Overcoming Learning Challenges",
+          "Designing Effective Study Techniques",
+          "The Role of Emotions in Learning",
+          "Impact of Environment on Learning"
+        ]
+      },
+      {
+        "level": 78,
+        "topic": "Intermediate Neuroscience",
+        "subtopics": [
+          "Exploring Brain-Computer Interfaces",
+          "Role of Neurotransmitters",
+          "Understanding Sensory Processing",
+          "The Role of the Cerebellum",
+          "Advances in Brain Imaging",
+          "Cognition and Language",
+          "Exploring Neural Plasticity",
+          "Brain Mechanisms in Decision-Making",
+          "Effects of Stress on the Brain",
+          "Neuroethics and Emerging Research"
+        ]
+      },
+      {
+        "level": 79,
+        "topic": "Advanced Mathematics",
+        "subtopics": [
+          "Introduction to Real Analysis",
+          "Linear Algebra Concepts",
+          "Matrix Operations",
+          "Differential Equations Basics",
+          "Exploring Number Theory",
+          "Multivariable Calculus",
+          "Applications of Graph Theory",
+          "Complex Numbers and Their Uses",
+          "Non-Euclidean Geometry",
+          "Mathematical Modeling"
+        ]
+      },
+      {
+        "level": 80,
+        "topic": "Advanced Political Science",
+        "subtopics": [
+          "Understanding Political Ideologies",
+          "Role of Constitutions",
+          "Analyzing Public Policy",
+          "Basics of Political Campaigns",
+          "Exploring Diplomacy",
+          "Role of the Judiciary in Politics",
+          "Exploring International Relations",
+          "Social Movements and Their Impact",
+          "Politics in Media",
+          "Analyzing Political Trends"
+        ]
+      },
+      {
+        "level": 81,
+        "topic": "Intermediate Engineering Concepts",
+        "subtopics": [
+          "Basics of Mechanical Engineering",
+          "Understanding Structural Design",
+          "Exploring Electrical Circuits",
+          "Introduction to Fluid Dynamics",
+          "Role of Thermodynamics",
+          "Basics of Civil Engineering",
+          "Applications of Engineering Ethics",
+          "Basics of Material Science",
+          "Exploring Robotics in Engineering",
+          "Engineering Solutions to Climate Issues"
+        ]
+      },
+      {
+        "level": 82,
+        "topic": "Advanced Data Science",
+        "subtopics": [
+          "Deep Dive into Machine Learning",
+          "Exploring Neural Networks",
+          "Understanding Natural Language Processing",
+          "Analyzing Social Media Data",
+          "Applications of Predictive Modeling",
+          "Building AI Models",
+          "Big Data Analysis Techniques",
+          "Data Security and Privacy",
+          "Ethics in Data Science",
+          "Exploring Cloud Data Systems"
+        ]
+      },
+      {
+        "level": 83,
+        "topic": "Advanced Literature Writing",
+        "subtopics": [
+          "Mastering Nonlinear Narrative",
+          "Exploring Allegory in Writing",
+          "Crafting Experimental Prose",
+          "Developing Unique Narrative Voices",
+          "Writing Historical Fiction",
+          "Incorporating Philosophy into Stories",
+          "Creating Believable Fantasies",
+          "Writing Longform Essays",
+          "Editing Large-Scale Projects",
+          "Introduction to Literary Agents"
+        ]
+      },
+      {
+        "level": 84,
+        "topic": "Advanced Global Affairs",
+        "subtopics": [
+          "Understanding Geopolitical Trends",
+          "The Role of the United Nations",
+          "Analyzing the Global Economy",
+          "Global Trade Agreements",
+          "Terrorism and Counterterrorism",
+          "Impact of Global Health Issues",
+          "Energy Politics and Climate Impact",
+          "The Future of International Law",
+          "Analyzing Conflicts in History",
+          "Global Migration Patterns"
+        ]
+      },
+      {
+        "level": 85,
+        "topic": "Advanced Artificial Intelligence",
+        "subtopics": [
+          "Deep Dive into AI Ethics",
+          "Understanding Advanced Machine Learning",
+          "Generative AI Applications",
+          "AI in Autonomous Vehicles",
+          "Ethics in AI Data Collection",
+          "Building Intelligent Chatbots",
+          "AI and Creative Arts",
+          "Applications in Predictive Analytics",
+          "Future Trends in AI Research",
+          "Evaluating Bias in AI Models"
+        ]
+      },
+      {
+        "level": 86,
+        "topic": "Advanced Leadership Studies",
+        "subtopics": [
+          "Leadership in Times of Crisis",
+          "Exploring Global Leadership Trends",
+          "Building Inclusive Teams",
+          "Understanding Leadership Styles",
+          "Cultural Competence in Leadership",
+          "Developing Charisma and Influence",
+          "Analyzing Historical Leaders",
+          "Strategic Visioning and Goal Setting",
+          "Conflict Mediation in Teams",
+          "Using Technology for Leadership"
+        ]
+      },
+      {
+        "level": 87,
+        "topic": "Advanced Environmental Science",
+        "subtopics": [
+          "Climate Science and Policy",
+          "Exploring Environmental Justice",
+          "Impact of Urbanization on Biodiversity",
+          "Role of Genetic Engineering in Conservation",
+          "Carbon Markets and Their Challenges",
+          "Renewable Energy Systems Design",
+          "Exploring Circular Economies",
+          "Understanding Natural Resource Allocation",
+          "Role of Education in Environmental Awareness",
+          "Mitigating Climate Risks"
+        ]
+      },
+      {
+        "level": 88,
+        "topic": "Intermediate Quantum Computing",
+        "subtopics": [
+          "Exploring Quantum Supremacy",
+          "Quantum Circuits Basics",
+          "Applications of Quantum Algorithms",
+          "Building Quantum Systems",
+          "Understanding Quantum Decoherence",
+          "Quantum Key Distribution",
+          "Simulating Molecules with Quantum Systems",
+          "The Future of Quantum Communications",
+          "Understanding Quantum Speedup",
+          "Limits of Current Quantum Hardware"
+        ]
+      },
+      {
+        "level": 89,
+        "topic": "Advanced Philosophy of Science",
+        "subtopics": [
+          "The Philosophy of Scientific Discovery",
+          "Understanding Paradigm Shifts",
+          "Analyzing the Role of Evidence",
+          "Debating the Limits of Knowledge",
+          "Exploring Reductionism",
+          "Philosophy of Evolution",
+          "Analyzing Theories of Consciousness",
+          "Exploring Science vs. Pseudoscience",
+          "Ethics in Experimental Design",
+          "Philosophy’s Role in Modern Science"
+        ]
+      },
+      {
+        "level": 90,
+        "topic": "Advanced Mathematics II",
+        "subtopics": [
+          "Group Theory Basics",
+          "Exploring Partial Differential Equations",
+          "Set Theory and Logic",
+          "Exploring Measure Theory",
+          "Nonlinear Dynamics",
+          "Applications of Differential Geometry",
+          "Advanced Probability Theory",
+          "Introduction to Complex Analysis",
+          "Exploring Game Theory",
+          "Mathematics for Machine Learning"
+        ]
+      },
+      {
+        "level": 91,
+        "topic": "Global Humanitarian Issues",
+        "subtopics": [
+          "Understanding Global Poverty",
+          "Role of NGOs in Crisis",
+          "Water Scarcity and Solutions",
+          "Exploring Refugee Crises",
+          "Education in Humanitarian Contexts",
+          "Health Systems in Crisis Regions",
+          "Food Security Initiatives",
+          "Global Human Rights Movements",
+          "Impact of Climate on Humanitarian Efforts",
+          "Understanding Global Health Systems"
+        ]
+      },
+      {
+        "level": 92,
+        "topic": "Advanced Public Policy",
+        "subtopics": [
+          "Policy Analysis Techniques",
+          "Evaluating Public Policy Outcomes",
+          "The Role of Think Tanks",
+          "Analyzing Economic Impacts of Policies",
+          "Role of Lobbying in Policy Formation",
+          "Exploring Healthcare Policies",
+          "Public Policies on Education",
+          "Climate Policy and Renewable Energy",
+          "Social Security and Welfare Systems",
+          "Policies in Criminal Justice Reform"
+        ]
+      },
+      {
+        "level": 93,
+        "topic": "Exploring Global Cultures",
+        "subtopics": [
+          "Understanding Indigenous Cultures",
+          "Role of Folklore in Society",
+          "Analyzing Global Culinary Traditions",
+          "Impact of Language on Culture",
+          "Music and Dance Across Cultures",
+          "Religious Festivals and Practices",
+          "Historical Impact of Migration",
+          "Role of Cultural Preservation",
+          "Exploring Architecture Globally",
+          "Adapting to Cultural Norms"
+        ]
+      },
+      {
+        "level": 94,
+        "topic": "Advanced Interdisciplinary Research",
+        "subtopics": [
+          "Role of Ethics in Research",
+          "Exploring STEM-Humanities Collaborations",
+          "Understanding Interdisciplinary Methodologies",
+          "Combining History and Science",
+          "Analyzing the Role of Art in Healthcare",
+          "Intersections of Literature and Philosophy",
+          "Exploring Data Science in Social Sciences",
+          "Cultural Studies and Environmental Research",
+          "Policy-Driven Research Design",
+          "Addressing Global Challenges Through Research"
+        ]
+      },
+      {
+        "level": 95,
+        "topic": "Advanced Robotics and Automation",
+        "subtopics": [
+          "Role of Autonomous Systems",
+          "Exploring Humanoid Robotics",
+          "Ethics in Robotic Deployments",
+          "Robot Perception and Vision",
+          "Building AI-Powered Robots",
+          "Understanding Robotic Prototyping",
+          "Industrial Automation and Its Challenges",
+          "Medical Robotics and Applications",
+          "Role of Sensors in Robotics",
+          "Future Trends in Robotics"
+        ]
+      },
+      {
+        "level": 96,
+        "topic": "Advanced Machine Learning",
+        "subtopics": [
+          "Reinforcement Learning in Depth",
+          "Generative Adversarial Networks (GANs)",
+          "Advanced Natural Language Processing Techniques",
+          "Hyperparameter Optimization",
+          "Transfer Learning Applications",
+          "Building Scalable ML Models",
+          "Deep Learning Frameworks Comparison",
+          "Ethics in Data Selection",
+          "AI for Personalization Systems",
+          "Advanced ML for Predictive Analytics"
+        ]
+      },
+      {
+        "level": 97,
+        "topic": "Space Exploration and Colonization",
+        "subtopics": [
+          "History of Space Exploration",
+          "Exploring Mars Colonization Plans",
+          "Building Space Habitats",
+          "Challenges of Long-Term Space Travel",
+          "Role of AI in Space Missions",
+          "Understanding Space Farming",
+          "Analyzing Lunar Base Concepts",
+          "Space Mining Possibilities",
+          "Global Cooperation in Space Exploration",
+          "Philosophy of Space Colonization"
+        ]
+      },
+      {
+        "level": 98,
+        "topic": "Emerging Technologies",
+        "subtopics": [
+          "Understanding Virtual Reality",
+          "Augmented Reality in Healthcare",
+          "Applications of 5G Technology",
+          "Internet of Things (IoT) in Daily Life",
+          "Future of Bioinformatics",
+          "Ethics in Emerging Tech",
+          "Exploring Human Augmentation",
+          "Digital Twins in Industry",
+          "AI-Powered Healthcare Systems",
+          "Trends in Nanotechnology"
+        ]
+      },
+      {
+        "level": 99,
+        "topic": "Exploring Utopian and Dystopian Futures",
+        "subtopics": [
+          "Understanding Utopian Concepts",
+          "Analyzing Dystopian Literature",
+          "Role of Technology in Dystopias",
+          "Utopian Philosophical Frameworks",
+          "Exploring Real-World Utopian Attempts",
+          "Impact of Governance in Dystopias",
+          "Analyzing Future Scenarios",
+          "Role of Society in Shaping Futures",
+          "Critical Thinking About Idealism",
+          "Comparing Utopias and Dystopias"
+        ]
+      },
+      {
+        "level": 100,
+        "topic": "Synthesizing Knowledge",
+        "subtopics": [
+          "Connecting Philosophy with Science",
+          "Understanding Art’s Role in History",
+          "Analyzing Economic Systems Holistically",
+          "Creating Interdisciplinary Narratives",
+          "Synthesizing Literature and Global Trends",
+          "Role of AI in Knowledge Integration",
+          "Understanding Systems Thinking",
+          "Developing Holistic Problem Solving",
+          "Exploring the Future of Learning",
+          "Reflecting on Knowledge Growth"
+        ]
+      }
+    ]
+}
+  
+    

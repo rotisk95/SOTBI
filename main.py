@@ -11,6 +11,9 @@ ACCOUNTABILITY: Only _collect_multi_source_candidates method significantly chang
 All other functionality preserved exactly as working.
 """
 
+import json
+import random
+import re
 import sys
 import gc
 import os
@@ -31,6 +34,7 @@ import concurrent.futures
 import numpy as np
 
 from hf_dataset_integration import HuggingFaceDatasetIntegration
+from llama_interface import LlamaInterface
 from predictive_system import PredictiveSystem
 
 # Configure logging for execution transparency
@@ -58,6 +62,7 @@ class UserInteraction:
         """Initialize the interactive system with trie-based memory."""
         try:
             self.system = PredictiveSystem(db_path)
+            self.llm_model = LlamaInterface()
             self.hf_integration = HuggingFaceDatasetIntegration(self.system.trie_memory) if HUGGINGFACE_AVAILABLE else None
             self.session_stats = {
                 'interactions': 0,
@@ -65,22 +70,103 @@ class UserInteraction:
                 'dataset_samples': 0,
                 'start_time': time.time()
             }
+            self.topic_progress = {}
+            self.covered_topics = set()
+            self.acceptable_progress_level = 0.8
+            
             logger.info("Initialized UserInteraction with trie-based system")
         except Exception as e:
             logger.error(f"Failed to initialize UserInteraction: {e}")
             raise
+
+    def run(self):
+        """PRESERVED: Main interactive loop with curriculum learning support"""
+        print("🚀 Starting Recursive Token Weaver System...")
+        logger.info("Starting interactive user interface")
+
+        try:
+            while True:
+                self.show_menu()
+                choice = input("Enter your choice (1-6): ").strip()
+
+                if choice == "1":
+                    self._handle_interactive_learning()
+                elif choice == "2":
+                    self._handle_curriculum_training()
+                elif choice == "3":
+                    self._handle_hf_training()
+                elif choice == "4":
+                    self._handle_statistics()
+                elif choice == "5":
+                    self._handle_save_load()
+                elif choice == "6":
+                    print("👋 Goodbye!")
+                    break
+                else:
+                    print("❌ Invalid choice. Please enter 1-6.")
+
+        except KeyboardInterrupt:
+            print("\n👋 System shutdown initiated")
+        except Exception as e:
+            logger.error(f"Error in main loop: {e}")
+            print(f"❌ System error: {e}")
+        finally:
+            try:
+                self.system.close()
+                logger.info("System shutdown completed")
+            except Exception as e:
+                logger.error(f"Error during shutdown: {e}")
 
     def show_menu(self):
         """PRESERVED: Display interactive menu for user"""
         print("\n" + "="*60)
         print("🧠 RECURSIVE TOKEN WEAVER - HYBRID LEARNING SYSTEM WITH ACTIVATION")
         print("="*60)
-        print("1. Interactive Learning Mode (Real-time prediction with rl feedback)") 
-        print("2. Train on HuggingFace datasets")
-        print("3. View learning statistics")
-        print("4. Save/Load model")
-        print("5. Exit")
+        print("1. Interactive Learning Mode (Real-time prediction with RL feedback)")
+        print("2. Curriculum LLM Training (Structured topic-based learning)")
+        print("3. Train on HuggingFace datasets")
+        print("4. View learning statistics")
+        print("5. Save/Load model")
+        print("6. Exit")
         print("="*60)
+
+    def _handle_curriculum_training(self):
+        """Handle curriculum-based LLM training session"""
+        print("\n🎓 CURRICULUM LLM TRAINING MODE")
+        print("Features:")
+        print("• Structured topic-based learning with LLM interaction")
+        print("• Curriculum progress tracking")
+        print("• Real-time prediction and feedback")
+        print("• Beam search and scoring options")
+        print("\nInitializing curriculum training session...")
+
+        try:
+            # Initialize curriculum attributes if they don't exist
+            if not hasattr(self, 'topic_progress'):
+                self.topic_progress = {}
+            if not hasattr(self, 'covered_topics'):
+                self.covered_topics = set()
+            if not hasattr(self, 'acceptable_progress_level'):
+                self.acceptable_progress_level = 1.0  # Default threshold
+
+            # Check if curriculum methods exist
+            if not hasattr(self, 'choose_from_curriculum'):
+                print("⚠️  Warning: choose_from_curriculum method not found")
+                print("Please ensure curriculum.json exists and curriculum methods are implemented")
+                return
+
+            if not hasattr(self, 'llm_model'):
+                print("⚠️  Warning: LLM model not initialized")
+                print("Please ensure LlamaInterface is properly configured")
+                return
+
+            # Run the adapted training session
+            self.interactive_llm_training_session()
+
+        except Exception as e:
+            logger.error(f"Error in curriculum training: {e}")
+            print(f"❌ Error in curriculum training: {e}")
+            print("Returning to main menu...")
 
     def run_progressive_token_prediction(self, text: str, verbose: bool = True) -> Dict[str, Any]:
         """
@@ -140,6 +226,250 @@ class UserInteraction:
         except Exception as e:
             logger.error(f"Error in progressive token prediction: {e}")
             return {'total_predictions': 0, 'average_reward': 0.0}
+        
+    def choose_from_curriculum(self, curriculum_path='curriculum.json'):
+        """Choose a topic from the curriculum that hasn't been covered yet."""
+        try:
+            # Load the JSON file
+            with open(curriculum_path, 'r') as file:
+                curriculum_data = json.load(file)
+
+            # Track all available topics to choose from
+            available_topics = []
+
+            # Check if curriculum has the expected structure
+            if "curriculum" in curriculum_data and isinstance(curriculum_data["curriculum"], list):
+                # Process each level
+                for level_data in curriculum_data["curriculum"]:
+                    if "topic" in level_data:
+                        main_topic = level_data["topic"]
+
+                        # Check if this main topic has been covered
+                        if main_topic not in self.covered_topics:
+                            available_topics.append(main_topic)
+
+                        # Process subtopics if available
+                        if "subtopics" in level_data and isinstance(level_data["subtopics"], list):
+                            for subtopic in level_data["subtopics"]:
+                                # Handle subtopics in string format
+                                if isinstance(subtopic, str) and subtopic not in self.covered_topics:
+                                    available_topics.append(subtopic)
+                                # Handle subtopics in dictionary format
+                                elif isinstance(subtopic, dict) and "topic" in subtopic:
+                                    subtopic_name = subtopic["topic"]
+                                    if subtopic_name not in self.covered_topics:
+                                        available_topics.append(subtopic_name)
+
+            # If we have available topics, randomly select one
+            if available_topics:
+                selected_topic = random.choice(available_topics)
+                print(f"\nSelected curriculum topic: {selected_topic}")
+                return selected_topic
+            else:
+                print("\nAll curriculum topics have been covered!")
+                return None
+
+        except FileNotFoundError:
+            print(f"Error: {curriculum_path} not found.")
+        except json.JSONDecodeError:
+            print(f"Error: {curriculum_path} contains invalid JSON.")
+        except Exception as e:
+            print(f"Error processing curriculum: {str(e)}")
+
+        # Return None if any error occurs
+        return None
+        
+    def interactive_llm_training_session(self, response="I am a student, I learn from conversations. Teach about me. And also from the following topic:"):
+        """Run interactive conversation session with curriculum learning using process_input approach."""
+        print("\n=== Fractal Memory System - Curriculum Learning ===")
+        print("Type 'exit' to quit, 'help' for commands, 'skip' to skip current topic")
+        print("Commands:")
+        print("• 'beam on/off' - toggle beam search")
+        print("• 'details' - show detailed scoring")
+        print("• 'skip' - skip current topic")
+        print("• 'exit' - quit session")
+
+        # Track session stats
+        session_stats = {
+            "topics_covered": 0,
+            "interactions": 0,
+            "start_time": time.time()
+        }
+
+        # Learning mode settings
+        use_beam_search = False
+        show_details = False
+
+        try:
+            while True:
+                # Step 1: Get curriculum topic
+                print("\nSelecting curriculum topic...")
+                curriculum_topic = self.choose_from_curriculum("curriculum.json")
+
+                if curriculum_topic:
+                    print(f"Selected topic: {curriculum_topic}")
+                    prompt = response + " Teach me about the following topic: " + curriculum_topic
+                else:
+                    print("Using general knowledge prompt (no uncovered topics found)")
+                    prompt = response + " general knowledge"
+                    curriculum_topic = "general knowledge"
+
+                # Step 2: Get LLM response
+                print(f"\nSending prompt to LLM about: {curriculum_topic}")
+                print("Waiting for LLM response (this may take some time)...")
+
+                try:
+                    llm_input = self.llm_model.get_response(prompt)
+                    input_length = len(llm_input)
+                    print(f"Received LLM response ({input_length} chars)")
+
+                    # Show preview of response
+                    preview_length = min(150, input_length)
+                    print(f"\nLLM: {llm_input[:preview_length]}..." if input_length > preview_length else f"\nLLM: {llm_input}")
+                except Exception as e:
+                    print(f"Error getting LLM response: {str(e)}")
+                    llm_input = f"Let me tell you about {curriculum_topic}. This topic involves learning important concepts."
+                    print(f"Using fallback response: {llm_input[:50]}...")
+
+                # Check for exit commands
+                if llm_input.lower() == "exit":
+                    break
+                elif llm_input.lower() == "help":
+                    print("Commands: 'exit' to quit, 'help' for commands, 'skip' to skip current topic")
+                    continue
+                elif llm_input.lower() == "skip":
+                    print(f"Skipping topic: {curriculum_topic}")
+                    continue
+
+                # Step 3: Process LLM input using process_input approach
+                print("\nProcessing LLM input with curriculum context...")
+                try:
+                    # Add curriculum context to the input
+                    contextual_input = f"Learning about {curriculum_topic}: {llm_input}"
+
+                    # Process the input (this replaces store_message and chunked processing)
+                    result = self.system.process_input(contextual_input, 0.7)  # Higher confidence for LLM content
+                    print(f"✅ Processed: {len(result['tokens'])} tokens")
+
+                except Exception as e:
+                    print(f"Warning - Error processing LLM input: {str(e)}")
+
+                # Step 4: Generate AI student response using prediction
+                print("Generating AI student response...")
+                try:
+                    # Use prediction to generate response
+                    continuation, confidence = self.system.predict_continuation(
+                        contextual_input, use_beam_search=use_beam_search
+                    )
+
+                    if continuation:
+                        ai_response = ''.join(continuation)
+                        print(f"AI Student: {ai_response}")
+                        print(f"Confidence: {confidence:.3f}")
+
+                        # Process the AI response back into the system
+                        self.system.process_input(ai_response, 0.8)  # High confidence for AI responses
+
+                    else:
+                        # Fallback response if no prediction available
+                        ai_response = f"I'm learning about {curriculum_topic}. This is very interesting and I want to understand more about these concepts."
+                        print(f"AI Student (fallback): {ai_response}")
+                        self.system.process_input(ai_response, 0.5)
+
+                    session_stats["interactions"] += 1
+
+                except Exception as e:
+                    print(f"Error generating response: {str(e)}")
+                    fallback_response = f"I'm studying {curriculum_topic}. It's fascinating to learn about these ideas."
+                    print(f"AI Student (fallback): {fallback_response}")
+                    try:
+                        self.system.process_input(fallback_response, 0.3)
+                    except Exception:
+                        pass
+
+                # Step 5: Optional user feedback (like in interactive learning)
+                feedback_input = input("\nRate the AI response (-1.0 to 1.0, or press Enter to continue): ").strip()
+                if feedback_input:
+                    # Handle user commands
+                    if feedback_input.lower() == 'beam on':
+                        use_beam_search = True
+                        print("✅ Beam search enabled")
+                    elif feedback_input.lower() == 'beam off':
+                        use_beam_search = False
+                        print("✅ Simple prediction enabled")
+                    elif feedback_input.lower() == 'details':
+                        show_details = not show_details
+                        print(f"✅ Detailed scoring: {'ON' if show_details else 'OFF'}")
+                    elif feedback_input.lower() == 'skip':
+                        print(f"Skipping to next topic...")
+                        continue
+                    elif feedback_input.lower() == 'exit':
+                        break
+                    else:
+                        # Try to parse as feedback score
+                        try:
+                            reward = float(feedback_input)
+                            reward = max(-1.0, min(1.0, reward))
+                            # Apply feedback to the AI response
+                            self.system.process_input(ai_response, reward)
+                            print(f"✅ Applied feedback reward: {reward}")
+                        except ValueError:
+                            print("Invalid input, continuing...")
+
+                # Step 6: Update curriculum progress
+                if curriculum_topic and curriculum_topic != "general knowledge":
+                    print(f"\nUpdating progress for topic: {curriculum_topic}")
+                    self.topic_progress[curriculum_topic] = self.topic_progress.get(curriculum_topic, 0.0) + 0.05
+
+                    # Check if topic should be marked as covered
+                    if self.topic_progress[curriculum_topic] >= self.acceptable_progress_level:
+                        self.covered_topics.add(curriculum_topic)
+                        session_stats["topics_covered"] += 1
+                        print(f"\n🎓 Topic '{curriculum_topic}' marked as covered!")
+                    else:
+                        remaining = self.acceptable_progress_level - self.topic_progress[curriculum_topic]
+                        print(f"📊 Topic progress: {self.topic_progress[curriculum_topic]:.2f}/{self.acceptable_progress_level} ({remaining:.2f} more to cover)")
+
+                # Display session stats
+                elapsed_time = time.time() - session_stats["start_time"]
+                print(f"\n--- Session Stats ---")
+                print(f"🎯 Topics covered: {session_stats['topics_covered']}")
+                print(f"💬 Interactions: {session_stats['interactions']}")
+                print(f"⏰ Session time: {elapsed_time:.1f} seconds")
+                print(f"🧠 Learning mode: {'Beam Search' if use_beam_search else 'Simple'}")
+                print(f"-------------------")
+
+                # Periodic save (using system's save mechanism)
+                if session_stats["interactions"] % 10 == 0:
+                    print("💾 Performing periodic save...")
+                    try:
+                        # Assuming the system has a save method
+                        if hasattr(self.system, 'save'):
+                            self.system.save()
+                        print("✅ Save completed")
+                    except Exception as e:
+                        print(f"Warning - Error in periodic save: {str(e)}")
+
+                print("\n--- Iteration completed successfully ---")
+
+        except KeyboardInterrupt:
+            print("\n⚠️ Session interrupted. Saving progress...")
+            try:
+                if hasattr(self.system, 'save'):
+                    self.system.save()
+                print("✅ Progress saved successfully.")
+            except Exception as e:
+                print(f"❌ Error saving progress: {str(e)}")
+        except Exception as e:
+            print(f"\n❌ Unexpected error in training session: {str(e)}")
+            print("Attempting to save progress...")
+            try:
+                if hasattr(self.system, 'save'):
+                    self.system.save()
+                print("✅ Progress saved despite error.")
+            except Exception as e2:
+                print(f"❌ Error saving progress: {str(e2)}")        
+
 
     def _handle_interactive_learning(self):
         """PRESERVED: Interactive learning mode with beam search options and detailed feedback"""
@@ -151,6 +481,7 @@ class UserInteraction:
         print("\nCommands:")
         print("• Type text for prediction")
         print("• 'beam on/off' - toggle beam search")
+        print("• 'activation on/off' - toggle event-driven activation context")
         print("• 'details' - show detailed scoring")
         print("• 'insights' - show system insights")
         print("• 'debug <query>' - debug trie structure for query")
@@ -161,7 +492,8 @@ class UserInteraction:
         
         try:
             while True:
-                print(f"\n🔍 Mode: {'Beam Search' if use_beam_search else 'Simple'} | Details: {'ON' if show_details else 'OFF'}")
+                activation_status = "ON" if self.system.use_activation_context else "OFF"
+                print(f"\n🔍 Mode: {'Beam Search' if use_beam_search else 'Simple'} | Details: {'ON' if show_details else 'OFF'} | Activation: {activation_status}")
                 print("🗣️  Enter text or command:")
                 raw = sys.stdin.read()  # reads until EOF
                 user_input = raw.strip()
@@ -175,6 +507,14 @@ class UserInteraction:
                 elif user_input.lower() == 'beam off':
                     use_beam_search = False
                     print("✅ Simple prediction enabled")
+                    continue
+                elif user_input.lower() == 'activation on':
+                    self.system.toggle_activation_context(True)
+                    print("✅ Event-driven activation context enabled")
+                    continue
+                elif user_input.lower() == 'activation off':
+                    self.system.toggle_activation_context(False)
+                    print("✅ Event-driven activation context disabled")
                     continue
                 elif user_input.lower() == 'details':
                     show_details = not show_details
@@ -225,27 +565,48 @@ class UserInteraction:
                         continuation, confidence = self.system.predict_continuation(
                             user_input, use_beam_search=use_beam_search
                         )
-                        
-                        if continuation:
-                            prediction = ' '.join(continuation)
+                        prediction = ' '.join(continuation) if continuation else None
+                        if prediction:
+                            prediction = re.sub(r' +([,.!?;:])', r'\1', prediction)
+                        if prediction:
                             method = "BEAM" if use_beam_search else "SIMPLE"
-                            print(f"🔮 {method} PREDICTION: '{user_input} {prediction}' (confidence: {confidence:.3f})")
+                            #if it's "?" we respond with something like "I don't know". "What do you mean?", "Can you please clarify?" etc.
+                            if '?' in prediction:
+                                prediction = "I don't know. Can you please clarify?"
+                            print(f"🔮 {method} PREDICTION: '{user_input}' '{prediction}' (confidence: {confidence:.3f})")
+                            
                         else:
                             print("🤔 No prediction available yet - keep training!")
                     
-                    if continuation:
-                        feedback = input("Rate prediction (0-1, or press Enter for 0.5): ").strip()
+                    # MODIFIED: Allow negative feedback in interactive loop
+                    if prediction:
+                        feedback = input("Rate prediction (-1.0 to 1.0, or press Enter for 0.0): ").strip()
                         try:
-                            reward = float(feedback) if feedback else 0.5
-                            reward = max(0.0, min(1.0, reward))
+                            reward = float(feedback) if feedback else 0.0  # CHANGED: Default to neutral
+                            reward = max(-1.0, min(1.0, reward))  # CHANGED: Allow negative range
+                            logger.info(f"User provided reward: {reward}")
                         except ValueError:
-                            reward = 0.5
+                            reward = 0.0  # CHANGED: Neutral default instead of 0.5
+                            logger.warning("Invalid reward input, defaulting to 0.0")
                         
-                        full_sequence = f"{user_input} {' '.join(continuation)}"
-                        self.system.process_input(full_sequence, reward)
+                        
+                        self.system.process_input(prediction, reward)
                         print(f"✅ Updated with reward: {reward} (Method: {'Beam' if use_beam_search else 'Simple'})")
-                    
-                    self.session_stats['interactions'] += 1
+                        
+                        # We add alternative response when neutral or negative feedback is given
+                        
+                        # ADDED: Log reward type for debugging
+                        if reward > 0.5:
+                            print("📈 POSITIVE reinforcement applied")
+                            self.session_stats['interactions'] += 1
+                            continue
+                        elif reward < -0.2:
+                            print("📉 NEGATIVE correction applied")
+                        else:
+                            print("⚖️ NEUTRAL/weak feedback applied")
+                        feedback_response = input("Provide feedback on the response (e.g., 'I meant X' or 'This is not what I asked'): ")
+                        self.system.process_input(feedback_response, 1.0)  # CHANGED: Default neutral feedback
+                        self.session_stats['interactions'] += 1
                     
                 except Exception as e:
                     logger.error(f"Error in interactive learning: {e}")
@@ -302,6 +663,12 @@ class UserInteraction:
                 print(f"\n👤 IDENTITY CONTEXT:")
                 for key, value in identity.items():
                     print(f"  • {key}: {value}")
+            
+            activation_context = insights.get('activation_context', {})
+            if activation_context:
+                print(f"\n⚡ ACTIVATION CONTEXT:")
+                print(f"  • Status: {'ENABLED' if activation_context.get('enabled') else 'DISABLED'}")
+                print(f"  • Description: {activation_context.get('description', 'N/A')}")
             
             logger.info("Displayed comprehensive system insights")
             
@@ -489,41 +856,6 @@ class UserInteraction:
         else:
             print("❌ Invalid choice")
 
-    def run(self):
-        """PRESERVED: Main interactive loop"""
-        print("🚀 Starting Recursive Token Weaver System...")
-        logger.info("Starting interactive user interface")
-        
-        try:
-            while True:
-                self.show_menu()
-                choice = input("Enter your choice (1-5): ").strip()
-                
-                if choice == "1":
-                    self._handle_interactive_learning()
-                elif choice == "2":
-                    self._handle_hf_training()
-                elif choice == "3":
-                    self._handle_statistics()
-                elif choice == "4":
-                    self._handle_save_load()
-                elif choice == "5":
-                    print("👋 Goodbye!")
-                    break
-                else:
-                    print("❌ Invalid choice. Please enter 1-5.")
-                    
-        except KeyboardInterrupt:
-            print("\n👋 System shutdown initiated")
-        except Exception as e:
-            logger.error(f"Error in main loop: {e}")
-            print(f"❌ System error: {e}")
-        finally:
-            try:
-                self.system.close()
-                logger.info("System shutdown completed")
-            except Exception as e:
-                logger.error(f"Error during shutdown: {e}")
 
 # Example usage and testing
 if __name__ == "__main__":
