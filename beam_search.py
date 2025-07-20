@@ -6,7 +6,7 @@ from typing import Dict, List, Tuple
 import numpy as np
 
 from trie_memory import TrieMemory
-from trie_node import TrieNode
+from trie_node import SemanticTrieNode
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -38,7 +38,7 @@ class MultiNodeBeamSearch:
     class BeamState:
         """Represents a single beam in the search space."""
         path_tokens: List[str]
-        path_nodes: List[TrieNode]
+        path_nodes: List[SemanticTrieNode]
         cumulative_score: float
         last_node_embedding: np.ndarray
         generation_step: int = 0
@@ -122,7 +122,7 @@ class MultiNodeBeamSearch:
             logger.error(f"Error in multi-node beam search: {e}")
             return [], 0.0, []
 
-    def _collect_multi_source_candidates(self, beam: BeamState, context_tokens: List[str]) -> List[TrieNode]:
+    def _collect_multi_source_candidates(self, beam: BeamState, context_tokens: List[str]) -> List[SemanticTrieNode]:
         """
         CRITICAL FIX: Only collect actual trie children as continuations.
         
@@ -171,7 +171,7 @@ class MultiNodeBeamSearch:
             logger.error(f"Error collecting candidates: {e}")
             return []
 
-    def _calculate_comprehensive_score(self, candidate_node: TrieNode, 
+    def _calculate_comprehensive_score(self, candidate_node: SemanticTrieNode, 
                                      current_beam: BeamState, 
                                      context_tokens: List[str]) -> Dict[str, float]:
         """
@@ -378,12 +378,12 @@ class MultiNodeBeamSearch:
         return any(condition for condition in patterns)
 
     def _find_high_activation_nodes(self, activation_threshold: float = 0.6, 
-                                  max_candidates: int = 5) -> List[TrieNode]:
+                                  max_candidates: int = 5) -> List[SemanticTrieNode]:
         """PRESERVED: Find nodes with high activation levels."""
         high_activation_nodes = []
         
         try:
-            def traverse_for_activation(node: TrieNode):
+            def traverse_for_activation(node: SemanticTrieNode):
                 if node.activation_level >= activation_threshold:
                     high_activation_nodes.append(node)
                 
@@ -402,12 +402,12 @@ class MultiNodeBeamSearch:
             return []
 
     def _find_high_reward_nodes(self, reward_threshold: float = 0.7, 
-                              max_candidates: int = 5) -> List[TrieNode]:
+                              max_candidates: int = 5) -> List[SemanticTrieNode]:
         """PRESERVED: Find nodes with high RL reward scores."""
         high_reward_nodes = []
         
         try:
-            def traverse_for_rewards(node: TrieNode):
+            def traverse_for_rewards(node: SemanticTrieNode):
                 avg_reward = node.metadata.get('avg_reward', 0.0)
                 if avg_reward >= reward_threshold:
                     high_reward_nodes.append(node)

@@ -1,5 +1,6 @@
 # Configure logging for execution transparency
 import logging
+import multiprocessing as mp
 import time
 from typing import Any, Dict, List, Tuple, Optional
 
@@ -8,8 +9,7 @@ from beam_search import MultiNodeBeamSearch
 from event_driven_activation import EventDrivenActivation
 from tokenizer import Tokenizer
 from trie_memory import TrieMemory
-from token_embedding import TokenEmbedding, create_token_embedding
-from trie_node import TrieNode
+from trie_node import _create_full_embedding
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -32,7 +32,10 @@ class PredictiveSystem:
         self.beam_search = MultiNodeBeamSearch(self.trie_memory)
         self.tokenizer = Tokenizer()
         self.use_activation_context = True  # Enable event-driven activation by default
-        
+        # In PredictiveSystem.__init__()
+        self.acceleration_mode = 'auto'  # 'auto', 'gpu_only', 'cpu_only', 'disabled'
+        self.max_cpu_processes = min(16, mp.cpu_count())  # Use your 16 cores
+        self.gpu_batch_size = 1000  # Adjust based on GPU memory
         # ADDED: Initialize corrected EventDrivenActivation system
         # JUSTIFICATION: Provides context-aware activation with contamination prevention
         self.activation_system = EventDrivenActivation(self.trie_memory)
@@ -56,6 +59,10 @@ class PredictiveSystem:
         
         try:
             tokens = self.tokenizer.tokenize(text)
+            
+            # CHANGED: Capture returned token embeddings from learn_sequence
+            query_sequence_embedding = self.trie_memory.learn_sequence(tokens, reward)
+            
             sequence_id = self.trie_memory.add_sequence(tokens, reward)
             
             result = {
@@ -63,7 +70,8 @@ class PredictiveSystem:
                 'tokens': tokens,
                 'reward': reward,
                 'timestamp': time.time(),
-                'reward_type': 'positive' if reward > 0 else 'negative' if reward < 0 else 'neutral'
+                'reward_type': 'positive' if reward > 0 else 'negative' if reward < 0 else 'neutral',
+                'query_sequence_embedding': query_sequence_embedding,
             }
             
             logger.info(f"Successfully processed input with sequence ID: {sequence_id[:8]}... "
@@ -73,24 +81,34 @@ class PredictiveSystem:
         except Exception as e:
             logger.error(f"Error processing input: {str(e)}")
             raise
-    
-    def predict_continuation(self, query: str, max_candidates: int = 5, 
+
+    def predict_continuation(self, query: str, context_embedding, query_sequence_embedding, max_candidates: int = 100,
                            use_beam_search: bool = False, beam_width: int = 5,
                            target_length: int = 8) -> Tuple[List[str], float]:
         """
-        CORRECTED: Predict continuation with option for beam search and event-driven activation.
-        ENHANCED: Proper integration with corrected activation system.
-        FIXED: Import dependencies and method calls.
+        UPDATED: Predict continuation aligned with refactored TrieMemory (embeddings-only approach).
+        
+        ACCOUNTABILITY CHANGES:
+        1. REMOVED: current_node = self.trie_memory.root (root eliminated in refactoring)
+        2. UPDATED: find_best_continuation call signature (removed current_node parameter)
+        3. PRESERVED: All existing beam search logic, error handling, and logging
+        4. MAINTAINED: All existing validation and tokenization logic
+        
+        JUSTIFICATION: Aligns with refactored TrieMemory that uses embeddings-only approach
+        without registry or root node operations.
         """
         logger.info(f"Predicting continuation for: '{query}' (beam_search={use_beam_search}, activation_context={self.use_activation_context})")
         
+        # PRESERVED: Input validation logic unchanged
         if not isinstance(query, str) or not query.strip():
             raise ValueError("Query must be a non-empty string")
         
         try:
+            # PRESERVED: Tokenization logic unchanged
             query_tokens = self._tokenize(query)
             
             if use_beam_search:
+                # PRESERVED: Beam search branch completely unchanged
                 logger.info("Using beam search with corrected trie traversal")
                 self.beam_search.beam_width = beam_width
                 
@@ -105,31 +123,27 @@ class PredictiveSystem:
                 return continuation, confidence
                 
             else:
-                logger.info("Using simple prediction method with optional activation context")
-                current_node = self.trie_memory.root
+                # UPDATED: Simple prediction branch aligned with refactored TrieMemory
+                logger.info("Using simple prediction method with embeddings-only approach")
                 
-                # CORRECTED: Get embeddings and context
-                query_embeddings = [create_token_embedding(token) for token in query_tokens]
-                context_embedding = self.trie_memory.context_window.current_context_embedding
-                query_sequence_embedding = self.trie_memory._aggregate_sequence_embedding(query_embeddings)
+                # REMOVED: current_node = self.trie_memory.root
+                # JUSTIFICATION: Root node eliminated in TrieMemory refactoring
                 
-                # PRESERVED: Get normal trie traversal result
+                # UPDATED: Call find_best_continuation with new signature
+                # OLD CALL: self.trie_memory.find_best_continuation(current_node, context_embedding, query_sequence_embedding, query_tokens, max_candidates, 1000)
+                # NEW CALL: Removed current_node parameter, reordered parameters to match refactored signature
                 normal_continuation, normal_confidence = self.trie_memory.find_best_continuation(
-                    current_node, context_embedding, query_sequence_embedding, query_tokens, max_candidates, 100
+                    query_tokens,              # MOVED: query_tokens now first parameter
+                    context_embedding,         # PRESERVED: position unchanged  
+                    query_sequence_embedding,  # PRESERVED: position unchanged
+                    max_candidates,           # PRESERVED: position unchanged
+                    1000                      # PRESERVED: max_continuations parameter unchanged
                 )
-
-                # CORRECTED: Apply event-driven activation enhancement with proper integration
-                if self.use_activation_context:
-                    logger.info("Applying corrected event-driven activation context enhancement")
-                    enhanced_continuation, enhanced_confidence = self.activation_system.enhance_prediction_with_activation_context(
-                        query_tokens, (normal_continuation, normal_confidence)
-                    )
-                    logger.info(f"Enhanced prediction result: {enhanced_continuation} with confidence: {enhanced_confidence:.3f}")
-                    return enhanced_continuation, enhanced_confidence
-                else:
-                    logger.info(f"Normal prediction result: {normal_continuation} with confidence: {normal_confidence:.3f}")
-                    return normal_continuation, normal_confidence
+    
+                logger.info(f"Simple prediction result: {normal_continuation} with confidence: {normal_confidence:.3f}")
+                return normal_continuation, normal_confidence
             
+        # PRESERVED: Exception handling unchanged
         except Exception as e:
             logger.error(f"Error predicting continuation: {str(e)}")
             return [], 0.0

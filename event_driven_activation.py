@@ -15,7 +15,7 @@ from collections import defaultdict
 
 import numpy as np
 
-from trie_node import TrieNode
+from trie_node import SemanticTrieNode
 
 logger = logging.getLogger(__name__)
 
@@ -292,7 +292,7 @@ class EventDrivenActivation:
             logger.warning(f"Error calculating activation boost: {e}")
             return 0.1  # Safe fallback
 
-    def _validate_activation_relevance(self, node: 'TrieNode', query_context_embedding: Optional[np.ndarray], target_token: str) -> bool:
+    def _validate_activation_relevance(self, node: 'SemanticTrieNode', query_context_embedding: Optional[np.ndarray], target_token: str) -> bool:
         """
         ADDED: Validate whether a node should be activated based on context relevance.
         JUSTIFICATION: User identified inappropriate activations due to context-blind token matching.
@@ -348,7 +348,7 @@ class EventDrivenActivation:
             logger.error(f"Error validating activation relevance for '{target_token}': {str(e)}")
             return False  # Conservative: skip activation on validation error
 
-    def _evaluate_path_context_relevance(self, node: 'TrieNode', target_token: str) -> float:
+    def _evaluate_path_context_relevance(self, node: 'SemanticTrieNode', target_token: str) -> float:
         """
         ADDED: Evaluate path-based context relevance when embeddings unavailable.
         JUSTIFICATION: Provides fallback relevance assessment for nodes without embeddings.
@@ -376,7 +376,7 @@ class EventDrivenActivation:
             logger.error(f"Error evaluating path context relevance: {str(e)}")
             return 0.0
 
-    def _calculate_node_quality_score(self, node: 'TrieNode') -> float:
+    def _calculate_node_quality_score(self, node: 'SemanticTrieNode') -> float:
         """
         ADDED: Calculate node quality score based on multiple factors.
         JUSTIFICATION: Provides additional signal for activation decisions beyond semantic relevance.
@@ -399,7 +399,7 @@ class EventDrivenActivation:
             logger.error(f"Error calculating node quality score: {str(e)}")
             return 0.0
 
-    def _calculate_reward_consistency(self, node: 'TrieNode') -> float:
+    def _calculate_reward_consistency(self, node: 'SemanticTrieNode') -> float:
         """
         ADDED: Calculate reward consistency to avoid activating unreliable nodes.
         JUSTIFICATION: Nodes with inconsistent rewards should be less likely to activate.
@@ -418,7 +418,7 @@ class EventDrivenActivation:
             logger.error(f"Error calculating reward consistency: {str(e)}")
             return 0.0
 
-    def _find_nodes_with_token(self, target_token: str) -> List['TrieNode']:
+    def _find_nodes_with_token(self, target_token: str) -> List['SemanticTrieNode']:
         """
         PRESERVED: Helper method to find all nodes containing a specific token.
         ENHANCED: Added iteration limits and cycle prevention for safety.
@@ -544,7 +544,7 @@ class EventDrivenActivation:
             logger.debug("No viable activated continuations found")
             return [], 0.0
 
-    def _calculate_activation_confidence(self, node: 'TrieNode', continuation: List[str]) -> float:
+    def _calculate_activation_confidence(self, node: 'SemanticTrieNode', continuation: List[str]) -> float:
         """
         PRESERVED: Calculate confidence score for activated continuation.
         """
