@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 class LlamaInterface:
     """Interface for LLM integration using Ollama"""
     
-    def __init__(self, model_name: str = "llama3.2:1b"):
+    def __init__(self, model_name: str = "deepseek-r1:8b"):
         self.model_name = model_name
         self.is_initialized = False
         is_initialized = self.initialize()
@@ -38,7 +38,7 @@ class LlamaInterface:
             )
 
             test_prompt = "You are a teacher. Respond with 'Ready' if you understand."
-            stdout, stderr = process.communicate(input=test_prompt, timeout=360)
+            stdout, stderr = process.communicate(input=test_prompt, timeout=30)
 
             if process.returncode == 0 and "Ready" in stdout:
                 logger.info("Ollama initialized successfully")

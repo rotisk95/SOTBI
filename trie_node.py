@@ -40,15 +40,15 @@ class SemanticTrieNode:
     - Preserved functionality: All original methods and properties maintained
     - Memory optimization: Eliminated ~40% redundant storage
     """
-    
-    def __init__(self, token: str = None, embedding: np.ndarray = None, db_env=None, context_window=None):
+
+    def __init__(self, token: str = None, embedding: np.ndarray = None, db_env=None, context_window=None, core_values=None):
         logger.debug(f"Initializing SemanticTrieNode for token: '{token}'")
         
         # CORE IDENTITY (unified from all classes)
         self.token = token
         self.node_id: str = self._generate_node_id()
         self.embedding_id: str = self._generate_embedding_id() if token else "root"
-        
+        self.core_values = core_values  # ✅ Store in node
         # EMBEDDING STORAGE (unified - single source of truth)
         self.embedding: Optional[np.ndarray] = embedding
         self._embedding_key: Optional[str] = None
@@ -93,17 +93,16 @@ class SemanticTrieNode:
         
         # METADATA (unified from all sources)
         self.metadata = {
-            'frequency': 0,
-            'total_reward': 0.0,
-            'avg_reward': 0.0,
-            'decay_rate': 0.01,
-            'creation_time': time.time(),
-            'negative_feedback_count': 0,
-            'confidence_updates': 0,
-            'importance_score': 1.0,  # From EmbeddingNode
-            'semantic_updates': 0
+        'frequency': 0,
+        'total_reward': 0.0,
+        'avg_reward': 0.0,
+        'decay_rate': 0.01,
+        'creation_time': time.time(),
+        'negative_feedback_count': 0,
+        'confidence_updates': 0,      # ADDED: Prevents 'confidence_updates' KeyError
+        'importance_score': 1.0,
+        'semantic_updates': 0         # ADDED: Prevents 'semantic_updates' KeyError
         }
-        
         # REWARD TRACKING
         self.reward_history: List[float] = []
         
@@ -120,7 +119,251 @@ class SemanticTrieNode:
             logger.info("Initialized root node with unified registry")
         
         #logger.info(f"SemanticTrieNode created: token='{token}', node_id={self.node_id[:8]}...")
+        # ADDED: Context-aware children tracking
+        self.context_children: Dict[str, Dict[str, 'SemanticTrieNode']] = {}  # context_id -> {token -> node}
+        self.context_sequences: Dict[str, List[str]] = {}  # context_id -> full_sequence
+        self.context_embeddings: Dict[str, bytes] = {}  # context_id -> sequence_embedding_bytes
+        # ADDED: Core values integration at node level
+        self.value_alignment_cache = {}  # Cache for performance
+        self.value_reinforcement_history = []  # Track value-aligned activations
         
+        #logger.info(f"Enhanced node '{self.token}' with value-aware scoring")
+    
+        logger.debug(f"Enhanced SemanticTrieNode with context tracking for token: '{token}'")
+    
+    # Add these methods to the SemanticTrieNode class in trie_node.py
+
+    def _assess_adaptive_evolution_alignment(self) -> float:
+        """
+        ADDED: Assess how well node supports adaptive evolution and learning growth.
+        
+        JUSTIFICATION: Measures node's contribution to system learning and adaptation.
+        For Sotbi, this means trie structure evolution and self-organization.
+        """
+        try:
+            evolution_score = 0.0
+            
+            # EVOLUTION INDICATORS: Nodes that enable adaptive learning
+            
+            # CHECK: Learning-related tokens that enable adaptation
+            learning_tokens = [
+                'learn', 'adapt', 'evolve', 'grow', 'develop', 'improve', 'change',
+                'update', 'modify', 'enhance', 'optimize', 'adjust', 'refine'
+            ]
+            
+            if self.token and any(learning_token in self.token.lower() for learning_token in learning_tokens):
+                evolution_score += 0.4
+                logger.debug(f"Node '{self.token}' supports learning/adaptation vocabulary")
+            
+            # CHECK: Reward history pattern indicating learning
+            if len(self.reward_history) >= 3:
+                # Positive trend in rewards indicates successful adaptation
+                recent_rewards = self.reward_history[-5:] if len(self.reward_history) >= 5 else self.reward_history
+                if len(recent_rewards) >= 2:
+                    trend = recent_rewards[-1] - recent_rewards[0]
+                    if trend > 0:
+                        evolution_score += min(0.3, trend * 0.5)  # Positive learning trend
+                        logger.debug(f"Node '{self.token}' shows positive learning trend: {trend:.3f}")
+            
+            # CHECK: Structural connectivity indicating adaptation capability
+            if len(self.children) > 1:
+                # Nodes with multiple children can support diverse continuations (adaptability)
+                connectivity_bonus = min(0.2, len(self.children) * 0.05)
+                evolution_score += connectivity_bonus
+                logger.debug(f"Node '{self.token}' connectivity supports adaptation: {len(self.children)} children")
+            
+            # CHECK: Metadata indicating learning activity
+            learning_indicators = [
+                ('confidence_updates', 0.1),
+                ('semantic_updates', 0.1),
+                ('positive_corrections', 0.15),
+                ('learning_boost', 0.1)
+            ]
+            
+            for indicator, weight in learning_indicators:
+                if indicator in self.metadata and self.metadata[indicator] > 0:
+                    indicator_bonus = min(weight, self.metadata[indicator] * 0.02)
+                    evolution_score += indicator_bonus
+                    logger.debug(f"Node '{self.token}' {indicator}: {self.metadata[indicator]} (bonus: {indicator_bonus:.3f})")
+            
+            # CHECK: Access patterns indicating ongoing evolution
+            if self.access_count > 2:
+                # Frequently accessed nodes are more likely to be evolving
+                access_evolution_bonus = min(0.15, np.log(self.access_count) * 0.05)
+                evolution_score += access_evolution_bonus
+            
+            return min(1.0, evolution_score)
+            
+        except Exception as e:
+            logger.error(f"Error assessing adaptive evolution alignment for '{self.token}': {e}")
+            return 0.5  # Neutral alignment on error
+    
+    def _assess_integration_alignment(self, context_embedding: np.ndarray, 
+                                    query_embedding: np.ndarray) -> float:
+        """
+        ADDED: Assess how well node bridges structure and meaning (integration).
+        
+        JUSTIFICATION: For Sotbi, integration means uniting trie structure with semantic meaning.
+        Measures how well nodes connect structural organization with semantic understanding.
+        """
+        try:
+            integration_score = 0.0
+            
+            # INTEGRATION INDICATORS: Nodes that bridge structure and meaning
+            
+            # CHECK: Structural bridging tokens
+            structural_bridging_tokens = [
+                'connect', 'bridge', 'link', 'join', 'unite', 'combine', 'merge',
+                'integrate', 'synthesize', 'organize', 'structure', 'relate',
+                'therefore', 'because', 'thus', 'hence', 'consequently', 'meaning'
+            ]
+            
+            if self.token and any(bridge_token in self.token.lower() for bridge_token in structural_bridging_tokens):
+                integration_score += 0.3
+                logger.debug(f"Node '{self.token}' supports structural-semantic bridging")
+            
+            # CHECK: Embedding alignment with both context and query (true integration)
+            if self.embedding is not None:
+                context_alignment = 0.0
+                query_alignment = 0.0
+                
+                try:
+                    if context_embedding is not None:
+                        context_alignment = self._calculate_embedding_similarity(
+                            self.embedding, context_embedding
+                        )
+                    
+                    if query_embedding is not None:
+                        query_alignment = self._calculate_embedding_similarity(
+                            self.embedding, query_embedding
+                        )
+                    
+                    # Integration means balanced alignment with both context AND query
+                    if context_alignment > 0.3 and query_alignment > 0.3:
+                        balance_score = min(context_alignment, query_alignment)  # Balanced integration
+                        integration_score += balance_score * 0.4
+                        logger.debug(f"Node '{self.token}' shows balanced integration: "
+                                   f"context={context_alignment:.3f}, query={query_alignment:.3f}")
+                    
+                except Exception as similarity_error:
+                    logger.debug(f"Error calculating embedding similarities for '{self.token}': {similarity_error}")
+            
+            # CHECK: Hierarchical position indicating structural integration
+            if hasattr(self, 'hierarchy_level') and self.hierarchy_level > 0:
+                # Mid-level nodes often serve as integration points
+                if 1 <= self.hierarchy_level <= 3:
+                    hierarchy_bonus = 0.15  # Sweet spot for integration
+                    integration_score += hierarchy_bonus
+                    logger.debug(f"Node '{self.token}' at integration-favorable hierarchy level: {self.hierarchy_level}")
+            
+            # CHECK: Children diversity indicating semantic-structural integration
+            if self.children:
+                # Nodes that connect to diverse children are integrative
+                child_diversity = len(set(child.token[0].lower() if child.token else 'x' 
+                                        for child in self.children.values() if child.token))
+                if child_diversity >= 2:
+                    diversity_bonus = min(0.2, child_diversity * 0.05)
+                    integration_score += diversity_bonus
+                    logger.debug(f"Node '{self.token}' child diversity supports integration: {child_diversity}")
+            
+            # CHECK: Semantic relationships indicating meaning-structure bridge
+            if hasattr(self, 'related_nodes') and len(self.related_nodes) > 0:
+                # Nodes with semantic relationships integrate meaning across structure
+                relationship_bonus = min(0.15, len(self.related_nodes) * 0.02)
+                integration_score += relationship_bonus
+                logger.debug(f"Node '{self.token}' semantic relationships support integration: {len(self.related_nodes)}")
+            
+            # CHECK: Completeness as integration endpoint
+            if hasattr(self, 'is_complete') and self.is_complete:
+                # Complete nodes often represent successful structure-meaning integration
+                integration_score += 0.1
+                logger.debug(f"Node '{self.token}' completeness indicates successful integration")
+            
+            return min(1.0, integration_score)
+            
+        except Exception as e:
+            logger.error(f"Error assessing integration alignment for '{self.token}': {e}")
+            return 0.5  # Neutral alignment on error
+        
+    
+    def add_child_with_context(self, token: str, child: 'SemanticTrieNode', 
+                              context_id: str, full_sequence: List[str], 
+                              sequence_embedding: np.ndarray):
+        """
+        ADDED: Add child with specific sequence context tracking.
+        
+        JUSTIFICATION: Allows disambiguation of different paths to same child.
+        """
+        try:
+            # PRESERVED: Maintain backward compatibility with regular children
+            self.children[token] = child
+            
+            # ADDED: Context-specific tracking
+            if context_id not in self.context_children:
+                self.context_children[context_id] = {}
+                
+            self.context_children[context_id][token] = child
+            self.context_sequences[context_id] = full_sequence.copy()
+            self.context_embeddings[context_id] = sequence_embedding.tobytes()
+            
+            logger.debug(f"Added child '{token}' with context_id '{context_id}' to '{self.token}'")
+            
+        except Exception as e:
+            logger.error(f"Error adding child with context: {e}")
+            # FALLBACK: Use regular add_child
+            self.children[token] = child
+    
+    def get_children_for_context(self, context_id: str) -> Dict[str, 'SemanticTrieNode']:
+        """
+        ADDED: Get children specific to a sequence context.
+        
+        JUSTIFICATION: Enables context-aware continuation selection.
+        """
+        try:
+            return self.context_children.get(context_id, {})
+        except Exception as e:
+            logger.error(f"Error getting children for context: {e}")
+            return {}
+    
+    def find_best_context_match(self, query_sequence_embedding: np.ndarray, 
+                               similarity_threshold: float = 0.7) -> Optional[str]:
+        """
+        ADDED: Find best matching context based on sequence embedding similarity.
+        
+        JUSTIFICATION: Selects most relevant context for continuation generation.
+        """
+        try:
+            if not self.context_embeddings or query_sequence_embedding is None:
+                return None
+                
+            best_context = None
+            best_similarity = similarity_threshold
+            
+            for context_id, embedding_bytes in self.context_embeddings.items():
+                try:
+                    context_embedding = np.frombuffer(embedding_bytes, dtype=np.float32)
+                    
+                    # Calculate similarity
+                    similarity = self._calculate_embedding_similarity(
+                        query_sequence_embedding, context_embedding
+                    )
+                    
+                    if similarity > best_similarity:
+                        best_similarity = similarity
+                        best_context = context_id
+                        
+                except Exception as emb_error:
+                    logger.debug(f"Error processing context embedding {context_id}: {emb_error}")
+                    continue
+            
+            if best_context:
+                logger.debug(f"Found best context match: {best_context} (similarity: {best_similarity:.3f})")
+            
+            return best_context
+            
+        except Exception as e:
+            logger.error(f"Error finding best context match: {e}")
+            return None
         
     def get_embedding(self, token: str) -> Optional[np.ndarray]:
         """
@@ -214,7 +457,7 @@ class SemanticTrieNode:
     
     def _generate_node_id(self) -> str:
         """Generate unique node identifier."""
-        return f"node_{uuid.uuid4().hex[:12]}_{int(time.time() * 1000) % 100000}"
+        return f"{uuid.uuid4().hex[:12]}_{int(time.time() * 1000) % 100000}"
     
     def _generate_embedding_id(self) -> str:
         """Generate unique embedding identifier."""
@@ -888,11 +1131,308 @@ class SemanticTrieNode:
     
     # BACKWARD COMPATIBILITY METHODS
     def calculate_relevance(self, context_embedding: np.ndarray = None, 
-                          query_embedding: np.ndarray = None) -> float:
+                          query_embedding: np.ndarray = None,
+                          core_values: Dict[str, Any] = None) -> float:
         """Backward compatibility: calculate relevance component."""
-        relevance = self._calculate_relevance_component(context_embedding, query_embedding)
-        self.relevance_score = relevance
-        return relevance
+        base_relevance = self._calculate_relevance_component(context_embedding, query_embedding)
+        # ADDED: Core values alignment scoring (HIGH IMPACT - 25% weight)
+        value_alignment_score = 0.0
+        values_to_use = core_values or self.core_values
+
+        if values_to_use:  # ✅ Now this will be True!
+            value_alignment_score = self._calculate_value_alignment_score(
+                context_embedding, query_embedding, values_to_use
+            )
+        logger.debug(f"Node '{self.token}' value alignment: {value_alignment_score:.3f}")
+
+        # ENHANCED: Combined relevance with values as defining factor
+        # 60% base relevance + 25% value alignment + 15% value-context coherence  
+        value_context_coherence = self._assess_value_context_coherence(
+            context_embedding, core_values
+        ) if core_values else 0.0
+        
+        total_relevance = (
+            0.60 * base_relevance +           # Preserved: semantic relevance
+            0.25 * value_alignment_score +    # ADDED: core values influence (HIGH)
+            0.15 * value_context_coherence    # ADDED: value-context harmony
+        )
+        
+        # LOGGED: Transparency in value-influenced scoring
+        #logger.info(f"Value-aware relevance for '{self.token}': total={total_relevance:.3f} "
+        #           f"(base={base_relevance:.3f}, values={value_alignment_score:.3f}, "
+        #           f"coherence={value_context_coherence:.3f})")
+        
+        # TRACKED: Store value alignment for learning reinforcement
+        self.value_reinforcement_history.append({
+            'timestamp': time.time(),
+            'value_score': value_alignment_score,
+            'total_relevance': total_relevance,
+            'context_coherence': value_context_coherence
+        })
+        return total_relevance
+
+
+    def _assess_value_context_coherence(self, context_embedding: np.ndarray, 
+                                       core_values: Dict[str, Any]) -> float:
+        """
+        ADDED: Assess how well context embedding aligns with core values.
+        
+        JUSTIFICATION: Measures harmony between current context and value system.
+        """
+        try:
+            if context_embedding is None or not core_values:
+                return 0.0
+            
+            coherence_score = 0.0
+            
+            # COHERENCE 1: Context-Node embedding alignment
+            if self.embedding is not None:
+                context_node_similarity = self._calculate_embedding_similarity(
+                    context_embedding, self.embedding
+                )
+                coherence_score += context_node_similarity * 0.4
+            
+            # COHERENCE 2: Context consistency with reasoning values
+            reasoning_coherence = self._assess_context_reasoning_coherence(context_embedding)
+            coherence_score += reasoning_coherence * 0.3
+            
+            # COHERENCE 3: Context stability (consistent with previous interactions)
+            stability_coherence = self._assess_context_stability(context_embedding)
+            coherence_score += stability_coherence * 0.3
+            
+            logger.debug(f"Context coherence for '{self.token}': {coherence_score:.3f}")
+            return min(1.0, coherence_score)
+            
+        except Exception as e:
+            logger.error(f"Error assessing value-context coherence: {e}")
+            return 0.0
+    
+    def _assess_context_reasoning_coherence(self, context_embedding: np.ndarray) -> float:
+        """Assess if context supports explicit reasoning."""
+        try:
+            if context_embedding is None:
+                return 0.0
+            
+            # Simple coherence based on embedding magnitude and distribution
+            embedding_magnitude = np.linalg.norm(context_embedding)
+            embedding_variance = np.var(context_embedding)
+            
+            # Higher magnitude + moderate variance = more coherent reasoning context
+            magnitude_score = min(1.0, embedding_magnitude)
+            variance_score = max(0.0, 1.0 - abs(embedding_variance - 0.5))
+            
+            return (magnitude_score + variance_score) / 2.0
+            
+        except Exception as e:
+            logger.error(f"Error assessing context reasoning coherence: {e}")
+            return 0.5
+    
+    def _assess_context_stability(self, context_embedding: np.ndarray) -> float:
+        """Assess context stability across interactions."""
+        try:
+            if context_embedding is None or not hasattr(self, 'context_window'):
+                return 0.5
+            
+            # Compare with recent context history if available
+            if hasattr(self.context_window, 'get_recent_contexts'):
+                recent_contexts = self.context_window.get_recent_contexts(limit=3)
+                if recent_contexts:
+                    similarities = []
+                    for past_context in recent_contexts:
+                        if past_context is not None:
+                            sim = self._calculate_embedding_similarity(
+                                context_embedding, past_context
+                            )
+                            similarities.append(sim)
+                    
+                    if similarities:
+                        return np.mean(similarities)
+            
+            # Fallback: assume moderate stability
+            return 0.6
+            
+        except Exception as e:
+            logger.error(f"Error assessing context stability: {e}")
+            return 0.5
+    
+
+    
+    def _calculate_value_alignment_score(self, context_embedding: np.ndarray, 
+                                       query_embedding: np.ndarray,
+                                       core_values: Dict[str, Any]) -> float:
+        """
+        ADDED: Calculate how well this node aligns with core values.
+        
+        ACCOUNTABILITY: Core values influence prediction through specific mechanisms:
+        1. Explicit reasoning preference - tokens that enable clear reasoning paths
+        2. Structural intelligence preference - tokens that build coherent structures  
+        3. Transparency preference - tokens that maintain accountable decision paths
+        4. Adaptive evolution preference - tokens that enable learning and growth
+        
+        JUSTIFICATION: Each core value translates to measurable node characteristics.
+        """
+        try:
+            cache_key = f"{id(context_embedding)}_{id(query_embedding)}"
+            if cache_key in self.value_alignment_cache:
+                return self.value_alignment_cache[cache_key]
+            
+            alignment_scores = {}
+            
+            # VALUE 1: Explicit Reasoning - prefer nodes that enable clear reasoning
+            explicit_reasoning_score = self._assess_explicit_reasoning_alignment()
+            alignment_scores['explicit_reasoning'] = explicit_reasoning_score
+            
+            # VALUE 2: Structural Intelligence - prefer nodes that build coherent structures
+            structural_intelligence_score = self._assess_structural_intelligence_alignment(context_embedding)
+            alignment_scores['structural_intelligence'] = structural_intelligence_score
+            
+            # VALUE 3: Accountable Intelligence - prefer nodes that maintain transparency
+            accountability_score = self._assess_accountability_alignment()
+            alignment_scores['accountability'] = accountability_score
+            
+            # VALUE 4: Adaptive Evolution - prefer nodes that enable learning/growth
+            adaptive_evolution_score = self._assess_adaptive_evolution_alignment()
+            alignment_scores['adaptive_evolution'] = adaptive_evolution_score
+            
+            # VALUE 5: Integrated Being - prefer nodes that bridge structure and meaning
+            integration_score = self._assess_integration_alignment(context_embedding, query_embedding)
+            alignment_scores['integration'] = integration_score
+            
+            # WEIGHTED: Combine value alignments (equal weighting)
+            total_alignment = sum(alignment_scores.values()) / len(alignment_scores)
+            
+            # CACHED: Store for performance
+            self.value_alignment_cache[cache_key] = total_alignment
+            
+            logger.debug(f"Value alignment breakdown for '{self.token}': {alignment_scores}")
+            return total_alignment
+            
+        except Exception as e:
+            logger.error(f"Error calculating value alignment for '{self.token}': {e}")
+            return 0.5  # Neutral alignment on error
+    
+    def _assess_explicit_reasoning_alignment(self) -> float:
+        """Assess how well node supports explicit reasoning paths."""
+        try:
+            # REASONING INDICATORS: Nodes that enable clear reasoning chains
+            reasoning_indicators = {
+                'connectives': ['because', 'therefore', 'thus', 'since', 'so', 'hence'],
+                'evidence_markers': ['evidence', 'proof', 'demonstrates', 'shows', 'indicates'],
+                'logical_flow': ['first', 'second', 'then', 'next', 'finally', 'consequently'],
+                'clarification': ['specifically', 'precisely', 'clearly', 'explicitly']
+            }
+            
+            reasoning_score = 0.0
+            token_lower = self.token.lower() if self.token else ""
+            
+            # CHECK: Direct reasoning terms
+            for category, terms in reasoning_indicators.items():
+                if any(term in token_lower for term in terms):
+                    reasoning_score += 0.3
+                    logger.debug(f"Node '{self.token}' supports {category} reasoning")
+            
+            # CHECK: Children that enable reasoning continuation
+            reasoning_children = 0
+            if self.children:
+                for child_token in self.children.keys():
+                    child_lower = child_token.lower()
+                    if any(term in child_lower for terms in reasoning_indicators.values() for term in terms):
+                        reasoning_children += 1
+                
+                if reasoning_children > 0:
+                    reasoning_score += min(0.4, reasoning_children * 0.1)
+            
+            # CHECK: Completeness as reasoning endpoint
+            if self.is_complete and reasoning_score > 0:
+                reasoning_score += 0.2  # Bonus for completing reasoning chains
+            
+            return min(1.0, reasoning_score)
+            
+        except Exception as e:
+            logger.error(f"Error assessing reasoning alignment: {e}")
+            return 0.5
+    
+    def _assess_structural_intelligence_alignment(self, context_embedding: np.ndarray) -> float:
+        """Assess how well node contributes to coherent structural evolution."""
+        try:
+            structural_score = 0.0
+            
+            # STRUCTURE INDICATORS: Nodes that build coherent information architecture
+            
+            # CHECK: Hierarchical organization contribution
+            if self.hierarchy_level > 0:
+                # Deeper nodes in well-formed hierarchies score higher
+                depth_bonus = min(0.3, self.hierarchy_level * 0.05)
+                structural_score += depth_bonus
+            
+            # CHECK: Connection density (well-connected nodes support structure)
+            if self.children:
+                connection_density = len(self.children) / 10.0  # Normalize
+                structural_score += min(0.25, connection_density)
+            
+            # CHECK: Context coherence (structural consistency)
+            if context_embedding is not None and self.embedding is not None:
+                context_coherence = self._calculate_embedding_similarity(
+                    context_embedding, self.embedding
+                )
+                structural_score += context_coherence * 0.3
+            
+            # CHECK: Reward history stability (consistent structural value)
+            if len(self.reward_history) >= 3:
+                reward_variance = np.var(self.reward_history[-10:])
+                stability_bonus = max(0.0, 0.2 - reward_variance)  # Low variance = stable structure
+                structural_score += stability_bonus
+            
+            # CHECK: Access pattern consistency (structural importance)
+            if self.access_count > 1:
+                access_bonus = min(0.15, np.log(self.access_count) * 0.05)
+                structural_score += access_bonus
+            
+            return min(1.0, structural_score)
+            
+        except Exception as e:
+            logger.error(f"Error assessing structural intelligence alignment: {e}")
+            return 0.5
+    
+    def _assess_accountability_alignment(self) -> float:
+        """Assess how well node maintains transparent, traceable reasoning."""
+        try:
+            accountability_score = 0.0
+            
+            # ACCOUNTABILITY INDICATORS: Nodes that enable transparency
+            
+            # CHECK: Traceability through node metadata
+            if self.metadata.get('confidence_updates', 0) > 0:
+                accountability_score += 0.2  # Nodes with tracked confidence changes
+            
+            # CHECK: Explicit decision logging capability
+            transparency_tokens = ['explain', 'because', 'show', 'demonstrate', 'trace', 'track']
+            if self.token and any(token in self.token.lower() for token in transparency_tokens):
+                accountability_score += 0.3
+            
+            # CHECK: Confidence as accountability measure
+            confidence_bonus = self.confidence * 0.25  # Higher confidence = more accountable
+            accountability_score += confidence_bonus
+            
+            # CHECK: Reward history transparency (clear learning patterns)
+            if self.reward_history:
+                # Consistent reward patterns indicate accountable behavior
+                recent_rewards = self.reward_history[-5:] if len(self.reward_history) >= 5 else self.reward_history
+                if recent_rewards and max(recent_rewards) - min(recent_rewards) < 0.3:
+                    accountability_score += 0.15  # Consistent performance
+            
+            # CHECK: Complete reasoning chains
+            if self.is_complete:
+                accountability_score += 0.1  # Complete thoughts support accountability
+            
+            return min(1.0, accountability_score)
+            
+        except Exception as e:
+            logger.error(f"Error assessing accountability alignment: {e}")
+            return 0.5
+
+
+
     
     def update_activation(self, reward: float = 0.0, context_relevance: float = 0.0):
         """Backward compatibility: update activation (calls unified scoring)."""
